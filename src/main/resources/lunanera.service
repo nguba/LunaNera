@@ -1,0 +1,11 @@
+[Unit]
+Description=Luna Nera Brewery Monitor
+After=syslog.target
+
+[Service]
+User=pi
+ExecStart=/home/pi/LunaNera/lunanera.jar --spring.config.location=file:///home/pi/LunaNera/application.properties SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
+

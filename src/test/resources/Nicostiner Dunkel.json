@@ -1,0 +1,364 @@
+{
+    "Global": {
+        "db_Version": 2006
+    },
+    "Hauptgaerverlauf": [
+        {
+            "Alc": 0.056259915309743114,
+            "Bemerkung": "",
+            "Restextrakt": 12.8,
+            "Temp": 6.8,
+            "Zeitstempel": "2022-01-30T00:01:47.000"
+        },
+        {
+            "Alc": 0.16866866676147635,
+            "Bemerkung": "",
+            "Restextrakt": 12.6,
+            "Temp": 7.3,
+            "Zeitstempel": "2022-01-30T16:51:33.000"
+        },
+        {
+            "Alc": 0.33700458071973827,
+            "Bemerkung": "",
+            "Restextrakt": 12.3,
+            "Temp": 8.6,
+            "Zeitstempel": "2022-01-31T10:52:20.000"
+        },
+        {
+            "Alc": 0.44904409065778167,
+            "Bemerkung": "Noticed controller was switched off.  Switched back on thus a slight delay arriving at 10C.  May need to pause for 0.5 day later to compensate.",
+            "Restextrakt": 12.1,
+            "Temp": 9,
+            "Zeitstempel": "2022-01-31T23:36:04.000"
+        },
+        {
+            "Alc": 0.728499225059166,
+            "Bemerkung": "Trub dump.  No debris.  The post-boil filter is doing it's job.  Noticed a full foam blanked.  The yeast is \"angekommen\".  A little late imo. Increase yeast dose next time.",
+            "Restextrakt": 11.6,
+            "Temp": 10,
+            "Zeitstempel": "2022-02-01T10:18:10.000"
+        },
+        {
+            "Alc": 0.8957322324420771,
+            "Bemerkung": "",
+            "Restextrakt": 11.3,
+            "Temp": 10,
+            "Zeitstempel": "2022-02-01T16:53:49.000"
+        },
+        {
+            "Alc": 1.3400807881723484,
+            "Bemerkung": "High Krausen",
+            "Restextrakt": 10.5,
+            "Temp": 10,
+            "Zeitstempel": "2022-02-02T09:48:17.000"
+        },
+        {
+            "Alc": 1.4508042698826353,
+            "Bemerkung": "",
+            "Restextrakt": 10.3,
+            "Temp": 9.8,
+            "Zeitstempel": "2022-02-02T17:42:38.000"
+        },
+        {
+            "Alc": 2.057199012436598,
+            "Bemerkung": "",
+            "Restextrakt": 9.2,
+            "Temp": 10,
+            "Zeitstempel": "2022-02-03T18:03:21.000"
+        },
+        {
+            "Alc": 2.4408225100907095,
+            "Bemerkung": "",
+            "Restextrakt": 8.5,
+            "Temp": 10,
+            "Zeitstempel": "2022-02-04T09:29:05.000"
+        },
+        {
+            "Alc": 2.6046967715415117,
+            "Bemerkung": "",
+            "Restextrakt": 8.2,
+            "Temp": 10,
+            "Zeitstempel": "2022-02-04T19:54:12.000"
+        },
+        {
+            "Alc": 3.2028351297391016,
+            "Bemerkung": "45% attenuation.  cooling down begins",
+            "Restextrakt": 7.1,
+            "Temp": 10,
+            "Zeitstempel": "2022-02-05T20:08:37.000"
+        },
+        {
+            "Alc": 3.635163389997777,
+            "Bemerkung": "",
+            "Restextrakt": 6.3,
+            "Temp": 9.8,
+            "Zeitstempel": "2022-02-06T19:51:06.000"
+        },
+        {
+            "Alc": 3.7967079883348216,
+            "Bemerkung": "",
+            "Restextrakt": 6,
+            "Temp": 9.6,
+            "Zeitstempel": "2022-02-07T10:52:03.000"
+        },
+        {
+            "Alc": 4.118855139191203,
+            "Bemerkung": "",
+            "Restextrakt": 5.4,
+            "Temp": 8.8,
+            "Zeitstempel": "2022-02-08T11:45:13.000"
+        }
+    ],
+    "Hefegaben": [
+        {
+            "Menge": 1,
+            "Name": "Omega OYL0114 Bayern Lager",
+            "ZugabeNach": 0,
+            "Zugegeben": 1
+        }
+    ],
+    "Hopfengaben": [
+        {
+            "Alpha": 5.9,
+            "Name": "Perle Leaf",
+            "Pellets": 1,
+            "Prozent": 69.00829741854767,
+            "Vorderwuerze": 1,
+            "Zeit": 60,
+            "erg_Menge": 42.042234619633604
+        },
+        {
+            "Alpha": 3.7,
+            "Name": "Tettnanger",
+            "Pellets": 1,
+            "Prozent": 12.295363855010393,
+            "Vorderwuerze": 3,
+            "Zeit": 30,
+            "erg_Menge": 13.695849920690456
+        },
+        {
+            "Alpha": 5,
+            "Name": "Hallertauer Mittelfrüher",
+            "Pellets": 1,
+            "Prozent": 18.696338726441937,
+            "Vorderwuerze": 3,
+            "Zeit": 30,
+            "erg_Menge": 15.411179912170947
+        }
+    ],
+    "Malzschuettung": [
+        {
+            "Farbe": 4,
+            "Name": "Weyermann Bohemian Floor Malt",
+            "Potential": 0,
+            "Prozent": 10,
+            "erg_Menge": 1.1725834417168879,
+            "pH": 5.92
+        },
+        {
+            "Farbe": 25,
+            "Name": "Best Munich Dark",
+            "Potential": 0,
+            "Prozent": 89.3,
+            "erg_Menge": 10.471170134531809,
+            "pH": 5.65
+        },
+        {
+            "Farbe": 900,
+            "Name": "Weyermann Carafa Special Type 1",
+            "Potential": 0,
+            "Prozent": 0.7,
+            "erg_Menge": 0.08208084092018214,
+            "pH": 0
+        }
+    ],
+    "Rasten": [
+        {
+            "Dauer": 10,
+            "Mengenfaktor": 1,
+            "Name": "Einmaischen",
+            "Param1": 62.66928479257125,
+            "Param2": 0,
+            "Param3": 20,
+            "Param4": 0,
+            "Temp": 58,
+            "Typ": 0
+        },
+        {
+            "Dauer": 1,
+            "Mengenfaktor": 1,
+            "Name": "Maltoserast (1. Verzuckerung)",
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "Param4": 0,
+            "Temp": 65,
+            "Typ": 1
+        },
+        {
+            "Dauer": 35,
+            "Mengenfaktor": 1,
+            "Name": "Maltoserast (1. Verzuckerung)",
+            "Param1": "",
+            "Param2": "",
+            "Param3": "",
+            "Param4": "",
+            "Temp": 63,
+            "Typ": 1
+        },
+        {
+            "Dauer": 60,
+            "Mengenfaktor": 1,
+            "Name": "Verzuckerungsrast (2. Verzuckerung)",
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "Param4": 0,
+            "Temp": 70,
+            "Typ": 1
+        },
+        {
+            "Dauer": 15,
+            "Mengenfaktor": 1,
+            "Name": "Abmaischen",
+            "Param1": 0,
+            "Param2": 0,
+            "Param3": 0,
+            "Param4": 0,
+            "Temp": 75,
+            "Typ": 1
+        }
+    ],
+    "Schnellgaerverlauf": [
+        {
+            "Alc": 0,
+            "Bemerkung": "",
+            "Restextrakt": 12.900000000000002,
+            "Temp": 18,
+            "Zeitstempel": "2022-01-30T00:01:47.000"
+        }
+    ],
+    "Sud": {
+        "Abfuelldatum": "",
+        "Anlage": "Luna Nera III",
+        "AusbeuteIgnorieren": 0,
+        "BemerkungAbfuellen": "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Nur 25 l abgefuellt.</p>",
+        "BemerkungBrauen": "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>",
+        "BemerkungGaerung": "",
+        "Braudatum": "2022-01-30T00:01:47.000",
+        "CO2": 4.499999999999998,
+        "Erstellt": "2021-12-21T17:24:31.000",
+        "FaktorHauptguss": 3.3,
+        "Gespeichert": "2022-02-08T11:46:29.000",
+        "IBU": 18,
+        "JungbiermengeAbfuellen": 45,
+        "Kategorie": "Bayrisch Dunkel",
+        "Kochdauer": 60,
+        "Kommentar": "<div style=\"white-space: pre-wrap;\">\n<h3 style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">Propagation</span></h3>\n<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:600; text-decoration: underline;\"><br /></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Water treated with epsom salts + yeast nutrient</p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">200g yeast slurry from fermentation (2B cells/ml)</p>\n<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">100g spray malt -&gt; 1l water%9.5</p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">207g spray malt -&gt; 2.1l water@9.2%</p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">382g spray malt -&gt; 4l water@9%</p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">5l mini mash @ 10%</p>\n<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1.79M cells / mL / °P</p>\n<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n</div>",
+        "KostenWasserStrom": 0,
+        "Menge": 45.79999999999998,
+        "MerklistenID": 0,
+        "Nachisomerisierungszeit": 5,
+        "Reifezeit": 6,
+        "ReifungStart": "2021-11-30T00:00:00.000",
+        "RestalkalitaetSoll": 0,
+        "SW": 13.4,
+        "SWAnstellen": 12.900000000000002,
+        "SWJungbier": 4.5000000000000036,
+        "SWKochbeginn": 12.8,
+        "SWKochende": 12.8,
+        "SWSchnellgaerprobe": 4.5,
+        "SchnellgaerprobeAktiv": 1,
+        "Speisemenge": 0,
+        "Spunden": 0,
+        "Status": 1,
+        "Sudhausausbeute": 60,
+        "Sudname": "Nicostiner Dunkel",
+        "Sudnummer": 2,
+        "TemperaturJungbier": 8.8,
+        "TemperaturKarbonisierung": 10,
+        "Verdampfungsrate": 1,
+        "Vergaerungsgrad": 76,
+        "VerschneidungAbfuellen": 0,
+        "Wasserprofil": "Blankwasser",
+        "WuerzemengeAnstellen": 45,
+        "WuerzemengeKochbeginn": 57.7,
+        "WuerzemengeKochende": 52.4,
+        "WuerzemengeVorHopfenseihen": 52.4,
+        "berechnungsArtHopfen": 1,
+        "erg_AbgefuellteBiermenge": 45,
+        "erg_Alkohol": 4.899218717805731,
+        "erg_EffektiveAusbeute": 52.08895758436202,
+        "erg_Farbe": 40.39349999999999,
+        "erg_Preis": 0.6187863919806276,
+        "erg_S_Gesamt": 11.725834417168878,
+        "erg_Sudhausausbeute": 60.654697276012655,
+        "erg_WHauptguss": 38.695253576657294,
+        "erg_WNachguss": 33.36154746382481,
+        "erg_W_Gesamt": 72.0568010404821,
+        "highGravityFaktor": 0
+    },
+    "Wasseraufbereitung": [
+        {
+            "Einheit": 1,
+            "Faktor": -0.0917,
+            "Menge": 0.1318404350848551,
+            "Name": "Calciumchlorid-Dihydrat (CaCl2) (100%)",
+            "Restalkalitaet": -1.4377364785698483
+        },
+        {
+            "Einheit": 1,
+            "Faktor": 0,
+            "Menge": 0.025,
+            "Name": "SMB",
+            "Restalkalitaet": 0
+        }
+    ],
+    "WeitereZutatenGaben": [
+        {
+            "Ausbeute": 0,
+            "Bemerkung": "",
+            "Einheit": 1,
+            "Entnahmeindex": 0,
+            "Farbe": 0,
+            "Menge": 0.04,
+            "Name": "Brew Tan B",
+            "Typ": 7,
+            "Zeitpunkt": 2,
+            "ZugabeNach": 0,
+            "Zugabedauer": 0,
+            "Zugabestatus": 1,
+            "erg_Menge": 1.9919999999999993
+        },
+        {
+            "Ausbeute": 0,
+            "Bemerkung": "",
+            "Einheit": 1,
+            "Entnahmeindex": 0,
+            "Farbe": 0,
+            "Menge": 0.08032128514056228,
+            "Name": "Brew Tan B",
+            "Typ": 7,
+            "Zeitpunkt": 1,
+            "ZugabeNach": 0,
+            "Zugabedauer": 20,
+            "Zugabestatus": 1,
+            "erg_Menge": 4
+        },
+        {
+            "Ausbeute": 0,
+            "Bemerkung": "",
+            "Einheit": 3,
+            "Entnahmeindex": 0,
+            "Farbe": 0,
+            "Menge": 0.025,
+            "Name": "Protafloc",
+            "Typ": 7,
+            "Zeitpunkt": 1,
+            "ZugabeNach": 0,
+            "Zugabedauer": 15,
+            "Zugabestatus": 1,
+            "erg_Menge": 1.2449999999999997
+        }
+    ]
+}
