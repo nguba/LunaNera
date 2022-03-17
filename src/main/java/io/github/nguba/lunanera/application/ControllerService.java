@@ -52,4 +52,9 @@ public class ControllerService {
     public Command[] queued() {
         return commands.toArray(new Command[commands.size()]);
     }
+
+    public void scheduleInSeconds(final Command command, final int period) {
+        Executors.newSingleThreadScheduledExecutor()
+                .scheduleAtFixedRate(() -> request(command), 0, period, TimeUnit.SECONDS);
+    }
 }

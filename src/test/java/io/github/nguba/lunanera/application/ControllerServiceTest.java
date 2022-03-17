@@ -1,12 +1,14 @@
 package io.github.nguba.lunanera.application;
 
 import io.github.nguba.lunanera.domain.*;
+import io.github.nguba.lunanera.domain.controller.Command;
 import io.github.nguba.lunanera.domain.controller.CommandFactory;
 import io.github.nguba.lunanera.domain.controller.ControllerSwitchedOff;
 import io.github.nguba.lunanera.domain.controller.ControllerSwitchedOn;
 import io.github.nguba.lunanera.infrastructure.EventPublisher;
 
 import io.github.nguba.lunanera.infrastructure.PidControllerTestFactory;
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +26,7 @@ class ControllerServiceTest {
 
     public static final BigDecimal EXPECTED_VALUE = BigDecimal.valueOf(554);
 
-    ControllerService processor = new ControllerService();
+    ControllerService controllerService = new ControllerService();
 
     BlockingQueue<Object> events = new LinkedBlockingQueue<>();
 
@@ -38,20 +40,45 @@ class ControllerServiceTest {
         }
     });
 
+    @Test
+    @Timeout(value = 1, unit = TimeUnit.SECONDS)
+    void scheduleOneCommand() throws InterruptedException {
+        AssertionsForClassTypes.assertThat(controllerService.queued()).isEmpty();
+
+        controllerService.scheduleInSeconds(commands.readProcessValue(controller), 1);
+
+        assertThat(events.take()).isInstanceOf(ProcessValueReceived.class);
+        assertThat(events).isEmpty();
+    }
+
+    @Test
+    @Timeout(value = 1, unit = TimeUnit.SECONDS)
+    void scheduleMultipleCommands() throws InterruptedException {
+        AssertionsForClassTypes.assertThat(controllerService.queued()).isEmpty();
+
+        controllerService.scheduleInSeconds(commands.readProcessValue(controller), 5);
+        controllerService.scheduleInSeconds(commands.readSetpoint(controller), 4);
+
+        assertThat(events.take()).isInstanceOf(ProcessValueReceived.class);
+        assertThat(events.take()).isInstanceOf(SetpointReceived.class);
+
+        assertThat(events).isEmpty();
+    }
+
     @BeforeEach
     void setUp() {
-        processor.start();
+        controllerService.start();
     }
 
     @AfterEach
     void tearDown() {
-        processor.stop();
+        controllerService.stop();
     }
 
     @Test
     @Timeout(value = 1, unit = TimeUnit.SECONDS)
     void readProcessValue() throws InterruptedException {
-        processor.request(commands.readProcessValue(controller));
+        controllerService.request(commands.readProcessValue(controller));
 
         Object event = events.take();
 
@@ -63,7 +90,7 @@ class ControllerServiceTest {
     @Test
     @Timeout(value = 1, unit = TimeUnit.SECONDS)
     void readSetpoint() throws InterruptedException {
-        processor.request(commands.readSetpoint(controller));
+        controllerService.request(commands.readSetpoint(controller));
 
         Object event = events.take();
 
@@ -78,7 +105,7 @@ class ControllerServiceTest {
         Vessel controller =
                 PidControllerTestFactory.INSTANCE.makeFailing(new IOException("switched off"), Integer.valueOf(3));
 
-        processor.request(commands.readProcessValue(controller));
+        controllerService.request(commands.readProcessValue(controller));
 
         Object event = events.take();
         assertThat(event).isExactlyInstanceOf(ControllerSwitchedOn.class);
@@ -88,7 +115,7 @@ class ControllerServiceTest {
     @Timeout(value = 1, unit = TimeUnit.SECONDS)
     void switchBackOnAfterReadSuccess() throws InterruptedException {
         controller.off();
-        processor.request(commands.readProcessValue(controller));
+        controllerService.request(commands.readProcessValue(controller));
 
         assertThat(events.take()).isInstanceOf(ProcessValueReceived.class);
         assertThat(events.take()).isExactlyInstanceOf(ControllerSwitchedOff.class);

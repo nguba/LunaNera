@@ -37,10 +37,6 @@ public class LunaNeraApplication {
         return new ProcessValueMeasurementRepository(ds);
     }
 
-    @Bean
-    CommandService commandService() {
-        return new CommandService();
-    }
 
     @Bean
     CommandFactory commandFactory(EventPublisher publisher) {
@@ -49,9 +45,9 @@ public class LunaNeraApplication {
 
     @Bean
     ContextStartedListener startupListener(LunaNeraConfig config, VesselRepository vesselRepository,
-                                           ControllerService service, ModbusMaster master, CommandService commands,
+                                           ControllerService service, ModbusMaster master,
                                            CommandFactory factory) {
-        return new ContextStartedListener(config, vesselRepository, service, master, commands, factory);
+        return new ContextStartedListener(config, vesselRepository, service, master, factory);
     }
 
     @Bean

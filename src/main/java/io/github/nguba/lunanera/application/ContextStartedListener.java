@@ -22,17 +22,14 @@ public class ContextStartedListener {
 
     private ModbusMaster master;
 
-    private CommandService commandService;
-
     private final CommandFactory factory;
 
     public ContextStartedListener(final LunaNeraConfig config, final VesselRepository vesselRepository,
-                                  ControllerService controllerService, ModbusMaster master, CommandService commandService, CommandFactory factory) {
+                                  ControllerService controllerService, ModbusMaster master, CommandFactory factory) {
         this.config = config;
         this.vesselRepository = vesselRepository;
         this.controllerService = controllerService;
         this.master = master;
-        this.commandService = commandService;
         this.factory = factory;
     }
 
@@ -52,8 +49,8 @@ public class ContextStartedListener {
         for (final LunaNeraConfig.Pid pidConfig : config.getPid()) {
             RedLionPXU pxu = new RedLionPXU(VesselId.of(pidConfig.getId()), master, pidConfig.getName());
             vesselRepository.add(pxu);
-            commandService.scheduleInSeconds(factory.readProcessValue(pxu), pidConfig.getRate(), controllerService);
-            commandService.scheduleInSeconds(factory.readSetpoint(pxu), 60, controllerService);
+            controllerService.scheduleInSeconds(factory.readProcessValue(pxu), pidConfig.getRate());
+            controllerService.scheduleInSeconds(factory.readSetpoint(pxu), 60);
         }
         controllerService.start();
     }
