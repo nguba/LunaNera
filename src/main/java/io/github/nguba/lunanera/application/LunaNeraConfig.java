@@ -129,7 +129,7 @@ public class LunaNeraConfig {
             return new StringJoiner(", ", Pid.class.getSimpleName() + "[", "]")
                     .add("name='" + name + "'")
                     .add("rate=" + rate)
-                    .add("id=" + id)
+                    .add("vesselId=" + id)
                     .add("persisted=" + persisted)
                     .toString();
         }

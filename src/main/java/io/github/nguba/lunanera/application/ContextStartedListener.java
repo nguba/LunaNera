@@ -2,9 +2,9 @@ package io.github.nguba.lunanera.application;
 
 import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
-import io.github.nguba.lunanera.domain.PidControllerID;
+import io.github.nguba.lunanera.domain.VesselId;
 import io.github.nguba.lunanera.domain.RedLionPXU;
-import io.github.nguba.lunanera.domain.command.CommandFactory;
+import io.github.nguba.lunanera.domain.controller.CommandFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -16,9 +16,9 @@ public class ContextStartedListener {
 
     private LunaNeraConfig config;
 
-    private final PidControllerRepository pidControllerRepository;
+    private final VesselRepository vesselRepository;
 
-    private ModbusService modbusService;
+    private ControllerService controllerService;
 
     private ModbusMaster master;
 
@@ -26,11 +26,11 @@ public class ContextStartedListener {
 
     private final CommandFactory factory;
 
-    public ContextStartedListener(final LunaNeraConfig config, final PidControllerRepository pidControllerRepository,
-                                  ModbusService modbusService, ModbusMaster master, CommandService commandService, CommandFactory factory) {
+    public ContextStartedListener(final LunaNeraConfig config, final VesselRepository vesselRepository,
+                                  ControllerService controllerService, ModbusMaster master, CommandService commandService, CommandFactory factory) {
         this.config = config;
-        this.pidControllerRepository = pidControllerRepository;
-        this.modbusService = modbusService;
+        this.vesselRepository = vesselRepository;
+        this.controllerService = controllerService;
         this.master = master;
         this.commandService = commandService;
         this.factory = factory;
@@ -50,11 +50,11 @@ public class ContextStartedListener {
         }
 
         for (final LunaNeraConfig.Pid pidConfig : config.getPid()) {
-            RedLionPXU pxu = new RedLionPXU(PidControllerID.of(pidConfig.getId()), master, pidConfig.getName());
-            pidControllerRepository.add(pxu);
-            commandService.scheduleInSeconds(factory.readProcessValue(pxu), pidConfig.getRate(), modbusService);
-            commandService.scheduleInSeconds(factory.readSetpoint(pxu), 60, modbusService);
+            RedLionPXU pxu = new RedLionPXU(VesselId.of(pidConfig.getId()), master, pidConfig.getName());
+            vesselRepository.add(pxu);
+            commandService.scheduleInSeconds(factory.readProcessValue(pxu), pidConfig.getRate(), controllerService);
+            commandService.scheduleInSeconds(factory.readSetpoint(pxu), 60, controllerService);
         }
-        modbusService.start();
+        controllerService.start();
     }
 }

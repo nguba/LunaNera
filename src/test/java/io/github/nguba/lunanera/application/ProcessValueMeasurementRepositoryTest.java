@@ -1,7 +1,7 @@
 package io.github.nguba.lunanera.application;
 
 import io.github.nguba.lunanera.IntegrationTest;
-import io.github.nguba.lunanera.domain.PidControllerID;
+import io.github.nguba.lunanera.domain.VesselId;
 import io.github.nguba.lunanera.domain.ProcessValue;
 import io.github.nguba.lunanera.domain.ProcessValueMeasurement;
 import org.junit.jupiter.api.Test;
@@ -22,11 +22,11 @@ public class ProcessValueMeasurementRepositoryTest {
     void addMeasurement() throws Exception {
         UUID batchId = UUID.randomUUID();
 
-        repository.save(new ProcessValueMeasurement(ProcessValue.of(23.1f), LocalDateTime.now(), PidControllerID.of(245), batchId));
+        ProcessValueMeasurement expected = new ProcessValueMeasurement(ProcessValue.of(23.1f), LocalDateTime.now(), VesselId.of(245), batchId);
+        repository.save(expected);
 
         try {
-            assertThat(repository.read(batchId)).singleElement()
-                    .isEqualTo(new ProcessValueMeasurement(ProcessValue.of(23.1f), LocalDateTime.now(), PidControllerID.of(245), batchId));
+            assertThat(repository.read(batchId)).contains(expected);
         }
         finally {
             repository.delete(batchId);

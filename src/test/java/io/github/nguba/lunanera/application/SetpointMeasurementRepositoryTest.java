@@ -1,7 +1,7 @@
 package io.github.nguba.lunanera.application;
 
 import io.github.nguba.lunanera.IntegrationTest;
-import io.github.nguba.lunanera.domain.AbstractPidController;
+import io.github.nguba.lunanera.domain.PidController;
 import io.github.nguba.lunanera.domain.Setpoint;
 import io.github.nguba.lunanera.domain.SetpointMeasurement;
 import io.github.nguba.lunanera.infrastructure.PidControllerTestFactory;
@@ -22,7 +22,7 @@ class SetpointMeasurementRepositoryTest {
 
     UUID batchId = UUID.randomUUID();
 
-    AbstractPidController controller = PidControllerTestFactory.INSTANCE.makeFermenterPid(BigDecimal.valueOf(50));
+    PidController controller = PidControllerTestFactory.INSTANCE.makeFermenterPid(BigDecimal.valueOf(50));
 
     @Test
     void saveMeasurement() throws Exception {

@@ -1,6 +1,6 @@
 package io.github.nguba.lunanera.application;
 
-import io.github.nguba.lunanera.domain.PidControllerID;
+import io.github.nguba.lunanera.domain.VesselId;
 import io.github.nguba.lunanera.domain.ProcessValue;
 import io.github.nguba.lunanera.domain.ProcessValueMeasurement;
 
@@ -25,6 +25,6 @@ public class ProcessValueMeasurementRepository extends AbstractMeasurementReposi
     @Override
     protected ProcessValueMeasurement rehydrateMeasurement(final UUID batchId, final ResultSet rs, final int pidId, final LocalDateTime when) throws SQLException {
         float pv = rs.getFloat(1);
-        return new ProcessValueMeasurement(ProcessValue.of(pv), when, PidControllerID.of(pidId), batchId);
+        return new ProcessValueMeasurement(ProcessValue.of(pv), when, VesselId.of(pidId), batchId);
     }
 }

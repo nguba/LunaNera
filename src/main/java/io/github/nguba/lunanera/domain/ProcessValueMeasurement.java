@@ -1,13 +1,12 @@
 package io.github.nguba.lunanera.domain;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.StringJoiner;
 import java.util.UUID;
 
-public class ProcessValueMeasurement extends TimestampedMeasurement<ProcessValue> {
+public class ProcessValueMeasurement extends Measurement<ProcessValue> {
 
-    public ProcessValueMeasurement(final ProcessValue value, final LocalDateTime when, final PidControllerID pidId, final UUID batchId) {
+    public ProcessValueMeasurement(final ProcessValue value, final LocalDateTime when, final VesselId pidId, final UUID batchId) {
         super(value, when, pidId, batchId);
     }
 

@@ -1,6 +1,6 @@
-package io.github.nguba.lunanera.domain.command;
+package io.github.nguba.lunanera.domain.controller;
 
-import io.github.nguba.lunanera.domain.AbstractPidController;
+import io.github.nguba.lunanera.domain.PidController;
 import io.github.nguba.lunanera.infrastructure.EventPublisher;
 
 import java.util.UUID;
@@ -15,11 +15,11 @@ public class CommandFactory {
         this.publisher = publisher;
     }
 
-    public ModbusCommand readProcessValue(AbstractPidController controller) {
+    public Command readProcessValue(PidController controller) {
         return new ReadProcessValue(publisher, controller, batchId);
     }
 
-    public ModbusCommand readSetpoint(final AbstractPidController controller) {
+    public Command readSetpoint(final PidController controller) {
         return new ReadSetpoint(publisher, controller, batchId);
     }
 }

@@ -22,10 +22,10 @@ public class ProcessValueMeasuredListener {
     public void onProcessValueMeasured(final ProcessValueReceived event) {
         try {
             ProcessValueMeasurement temp =
-                    new ProcessValueMeasurement(event.getProcessValue(), event.getWhen(), event.getDeviceId(), event.getBatchId());
+                    new ProcessValueMeasurement(event.processValue(), event.when(), event.vesselId(), event.batchId());
             repository.save(temp);
         } catch (SQLException e) {
-            LOGGER.warn("Error persisting {}", event.getProcessValue(), e);
+            LOGGER.warn("Error persisting {}", event.processValue(), e);
         }
     }
 }

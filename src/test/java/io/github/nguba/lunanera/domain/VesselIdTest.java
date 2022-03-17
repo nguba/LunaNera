@@ -5,26 +5,22 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class DeviceIDTest {
+class VesselIdTest {
 
     @Test
     void verify() {
-        EqualsVerifier.forClass(PidControllerID.class).usingGetClass().verify();
+        EqualsVerifier.forClass(VesselId.class).usingGetClass().verify();
     }
 
     @Test
     @DisplayName("Value cannot be bigger than 255")
     void cannotConstructOverModbusLimit() {
-        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> {
-            PidControllerID.of(Integer.valueOf(256));
-        });
+        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> VesselId.of(256));
     }
 
     @Test
     @DisplayName("Value cannot be less than zero")
     void cannotBeLessThanZero() {
-        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> {
-            PidControllerID.of(Integer.valueOf(-1));
-        });
+        Assertions.assertThatIllegalArgumentException().isThrownBy(() -> VesselId.of(-1));
     }
 }

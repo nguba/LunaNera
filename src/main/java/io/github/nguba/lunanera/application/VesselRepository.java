@@ -1,6 +1,6 @@
 package io.github.nguba.lunanera.application;
 
-import io.github.nguba.lunanera.domain.PidControllerID;
+import io.github.nguba.lunanera.domain.VesselId;
 import io.github.nguba.lunanera.domain.PidController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,27 +9,29 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-public class PidControllerRepository {
+/**
+ * Stores all configured Vessels, so we can locate them via their identity.
+ */
+public class VesselRepository {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PidControllerRepository.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(VesselRepository.class);
 
-    private final ConcurrentMap<PidControllerID, PidController> controllers =
-            new ConcurrentHashMap<>();
+    private final ConcurrentMap<VesselId, PidController> controllers = new ConcurrentHashMap<>();
 
     public void add(final PidController pidController) {
         LOGGER.info("Registering {}", pidController);
         controllers.putIfAbsent(pidController.getId(), pidController);
     }
 
-    public boolean has(final PidControllerID id) {
+    public boolean has(final VesselId id) {
         return controllers.containsKey(id);
     }
 
-    public Optional<PidController> find(final PidControllerID id) {
+    public Optional<PidController> find(final VesselId id) {
         return Optional.ofNullable(controllers.get(id));
     }
 
-    public void remove(final PidControllerID id) {
+    public void remove(final VesselId id) {
         controllers.remove(id);
     }
 }

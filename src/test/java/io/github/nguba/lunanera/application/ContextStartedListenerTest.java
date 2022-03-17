@@ -1,22 +1,19 @@
 package io.github.nguba.lunanera.application;
 
 import io.github.nguba.lunanera.IntegrationTest;
-import io.github.nguba.lunanera.domain.PidControllerID;
 import io.github.nguba.lunanera.infrastructure.PidControllerTestFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @IntegrationTest
 class ContextStartedListenerTest {
 
     @Autowired
-    private PidControllerRepository repo;
+    private VesselRepository repo;
 
     @Test
     void hasMashTunController() {

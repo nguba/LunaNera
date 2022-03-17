@@ -16,8 +16,8 @@ public class SetpointReceivedListener {
 
     @EventListener
     public void onSetpointReceived(SetpointReceived event) throws SQLException {
-        SetpointMeasurement measurement = new SetpointMeasurement(event.getValue(), event.getWhen(), event.getDeviceId(), event.getBatchId());
-        repository.delete(event.getDeviceId().getValue().intValue());
+        SetpointMeasurement measurement = new SetpointMeasurement(event.getValue(), event.when(), event.vesselId(), event.batchId());
+        //repository.delete(event.getDeviceId().getValue().intValue());
         repository.save(measurement);
     }
 }

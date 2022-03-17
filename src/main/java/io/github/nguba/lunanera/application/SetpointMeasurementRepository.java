@@ -28,7 +28,7 @@ public class SetpointMeasurementRepository extends AbstractMeasurementRepository
     @Override
     protected SetpointMeasurement rehydrateMeasurement(final UUID batchId, final ResultSet rs, final int pidId, final LocalDateTime when) throws SQLException {
         float pv = rs.getFloat(1);
-        return new SetpointMeasurement(Setpoint.of(pv), when, PidControllerID.of(pidId), batchId);
+        return new SetpointMeasurement(Setpoint.of(pv), when, VesselId.of(pidId), batchId);
     }
 
     public int delete(int pidId) throws SQLException {

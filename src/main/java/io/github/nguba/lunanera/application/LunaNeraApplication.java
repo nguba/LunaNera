@@ -1,7 +1,7 @@
 package io.github.nguba.lunanera.application;
 
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
-import io.github.nguba.lunanera.domain.command.CommandFactory;
+import io.github.nguba.lunanera.domain.controller.CommandFactory;
 import io.github.nguba.lunanera.infrastructure.DomainEventPublisher;
 import io.github.nguba.lunanera.infrastructure.EventPublisher;
 import io.github.nguba.lunanera.infrastructure.ModbusFactory;
@@ -48,15 +48,15 @@ public class LunaNeraApplication {
     }
 
     @Bean
-    ContextStartedListener startupListener(LunaNeraConfig config, PidControllerRepository pidControllerRepository,
-                                           ModbusService service, ModbusMaster master, CommandService commands,
+    ContextStartedListener startupListener(LunaNeraConfig config, VesselRepository vesselRepository,
+                                           ControllerService service, ModbusMaster master, CommandService commands,
                                            CommandFactory factory) {
-        return new ContextStartedListener(config, pidControllerRepository, service, master, commands, factory);
+        return new ContextStartedListener(config, vesselRepository, service, master, commands, factory);
     }
 
     @Bean
-    PidControllerStatusListener pidControllerStatusListener(PidControllerStatusRepository repository) {
-        return new PidControllerStatusListener(repository);
+    PidControllerStatusListener pidControllerStatusListener() {
+        return new PidControllerStatusListener();
     }
 
     @Bean
@@ -65,8 +65,8 @@ public class LunaNeraApplication {
     }
 
     @Bean
-    PidControllerRepository pidControllerRepository() {
-        return new PidControllerRepository();
+    VesselRepository pidControllerRepository() {
+        return new VesselRepository();
     }
 
     @Bean
@@ -80,12 +80,7 @@ public class LunaNeraApplication {
     }
 
     @Bean
-    ModbusService modbusService() {
-        return new ModbusService();
-    }
-
-    @Bean
-    PidControllerStatusRepository controllerStatusRepository(DataSource dataSource) {
-        return new PidControllerStatusRepository(dataSource);
+    ControllerService modbusService() {
+        return new ControllerService();
     }
 }

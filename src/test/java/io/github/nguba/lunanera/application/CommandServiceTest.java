@@ -1,8 +1,8 @@
 package io.github.nguba.lunanera.application;
 
-import io.github.nguba.lunanera.domain.AbstractPidController;
-import io.github.nguba.lunanera.domain.command.CommandFactory;
-import io.github.nguba.lunanera.domain.command.ModbusCommand;
+import io.github.nguba.lunanera.domain.PidController;
+import io.github.nguba.lunanera.domain.controller.CommandFactory;
+import io.github.nguba.lunanera.domain.controller.Command;
 import io.github.nguba.lunanera.infrastructure.EventPublisher;
 import io.github.nguba.lunanera.infrastructure.PidControllerTestFactory;
 import org.junit.jupiter.api.Test;
@@ -15,9 +15,9 @@ class CommandServiceTest {
 
     CommandService producer = new CommandService();
 
-    ModbusService consumer = new ModbusService();
+    ControllerService consumer = new ControllerService();
 
-    AbstractPidController controller = PidControllerTestFactory.INSTANCE.makeHotLiquorPid(BigDecimal.valueOf(895));
+    PidController controller = PidControllerTestFactory.INSTANCE.makeHotLiquorPid(BigDecimal.valueOf(895));
 
     CommandFactory commands = new CommandFactory(new EventPublisher() {
         @Override
@@ -36,7 +36,7 @@ class CommandServiceTest {
 
         assertThat(consumer.queued()).hasSizeBetween(4, 6);
 
-        for(ModbusCommand command : consumer.queued()) {
+        for(Command command : consumer.queued()) {
             System.out.println(command);
         }
     }
@@ -52,7 +52,7 @@ class CommandServiceTest {
 
         assertThat(consumer.queued()).hasSizeBetween(6, 9);
 
-        for(ModbusCommand command : consumer.queued()) {
+        for(Command command : consumer.queued()) {
             System.out.println(command);
         }
     }

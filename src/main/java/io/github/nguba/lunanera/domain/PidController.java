@@ -1,22 +1,45 @@
 package io.github.nguba.lunanera.domain;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
-public interface PidController {
-    AbstractPidController.State getState();
+public abstract class PidController {
 
-    public PidControllerID getId();
+    private State state = State.ON; // could be named as heating / off instead....
 
-    public String getName();
-
-    public enum State {
-        ON, OFF;
+    protected PidController(VesselId id) {
+        this.id = id;
     }
 
-    /*
-     * Note that reads from the PDU are offset by one.  that means that a register stored in offset 1, is actually read as offset 0.
-     */
-    BigDecimal readProcessValue() throws Exception;
+    public abstract String getName();
 
-    BigDecimal readSetpoint() throws Exception;
+    public abstract BigDecimal readProcessValue() throws Exception;
+
+    public abstract BigDecimal readSetpoint() throws Exception;
+
+    public enum State {
+        ON, OFF
+    }
+    public State getState() {
+        return state;
+    }
+
+    public Optional<ControllerSwitchedOn> off() {
+        if(State.OFF.equals(state)) return Optional.empty();
+        this.state = State.OFF;
+        return Optional.of(ControllerSwitchedOn.on(id));
+    }
+
+    public Optional<ControllerSwitchedOff> on() {
+        if(State.ON.equals(state)) return Optional.empty();
+
+        this.state = State.ON;
+        return Optional.of(ControllerSwitchedOff.on(id));
+    }
+
+    private final VesselId id;
+
+    public VesselId getId() {
+        return id;
+    }
 }

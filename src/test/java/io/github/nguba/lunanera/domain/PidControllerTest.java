@@ -7,9 +7,9 @@ import java.math.BigDecimal;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class AbstractPidControllerTest {
+class PidControllerTest {
 
-    AbstractPidController controller = PidControllerTestFactory.INSTANCE.makeMashTunPid(BigDecimal.ZERO);
+    PidController controller = PidControllerTestFactory.INSTANCE.makeMashTunPid(BigDecimal.ZERO);
 
     @Test
     void isInitiallyOn() {

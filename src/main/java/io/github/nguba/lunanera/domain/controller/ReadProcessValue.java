@@ -1,6 +1,6 @@
-package io.github.nguba.lunanera.domain.command;
+package io.github.nguba.lunanera.domain.controller;
 
-import io.github.nguba.lunanera.domain.AbstractPidController;
+import io.github.nguba.lunanera.domain.PidController;
 import io.github.nguba.lunanera.domain.ProcessValue;
 import io.github.nguba.lunanera.domain.ProcessValueReceived;
 import io.github.nguba.lunanera.infrastructure.EventPublisher;
@@ -9,14 +9,14 @@ import java.math.BigDecimal;
 import java.util.StringJoiner;
 import java.util.UUID;
 
-public class ReadProcessValue extends AbstractModbusCommand {
+public class ReadProcessValue extends ModbusCommand {
 
-    public ReadProcessValue(final EventPublisher publisher, final AbstractPidController pid, UUID batchId) {
+    public ReadProcessValue(final EventPublisher publisher, final PidController pid, UUID batchId) {
         super(publisher, pid, batchId);
     }
 
     @Override
-    protected void executeCommandOnDevice(final AbstractPidController pid, final EventPublisher publisher, UUID batchId) throws Exception {
+    protected void executeCommandOnDevice(final PidController pid, final EventPublisher publisher, UUID batchId) throws Exception {
         final BigDecimal value = pid.readProcessValue();
         final ProcessValue processValue = ProcessValue.withSingleDecimalPrecision(value);
         final ProcessValueReceived event = ProcessValueReceived.with(processValue, pid.getId(), batchId);

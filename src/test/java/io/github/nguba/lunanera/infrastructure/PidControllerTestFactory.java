@@ -1,9 +1,7 @@
 package io.github.nguba.lunanera.infrastructure;
 
-import io.github.nguba.lunanera.domain.AbstractPidController;
 import io.github.nguba.lunanera.domain.PidController;
-import io.github.nguba.lunanera.domain.PidControllerID;
-import io.github.nguba.lunanera.domain.ProcessValue;
+import io.github.nguba.lunanera.domain.VesselId;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
@@ -14,34 +12,29 @@ public enum PidControllerTestFactory {
 
     public static final BigDecimal ERROR_SIGNAL = BigDecimal.valueOf(Integer.MIN_VALUE);
 
-    public AbstractPidController makeMashTunPid(BigDecimal value) {
-        Integer id = Integer.valueOf(1);
-        return makePid(value, id);
+    public PidController makeMashTunPid(BigDecimal value) {
+        return makePid(value, 1);
     }
 
-    public AbstractPidController makeBoilKettlePid(BigDecimal value) {
-        Integer id = Integer.valueOf(2);
-        return makePid(value, id);
+    public PidController makeBoilKettlePid(BigDecimal value) {
+        return makePid(value, 2);
     }
 
-    public AbstractPidController makeHotLiquorPid(BigDecimal value) {
-        Integer id = Integer.valueOf(3);
-        return makePid(value, id);
+    public PidController makeHotLiquorPid(BigDecimal value) {
+        return makePid(value, 3);
     }
 
-    public AbstractPidController makeFermenterPid(BigDecimal value) {
-        Integer id = Integer.valueOf(4);
-        return makePid(value, id);
+    public PidController makeFermenterPid(BigDecimal value) {
+        return makePid(value, 4);
     }
 
-    public AbstractPidController makeCellarPid(BigDecimal value) {
-        Integer id = Integer.valueOf(5);
-        return makePid(value, id);
+    public PidController makeCellarPid(BigDecimal value) {
+        return makePid(value, 5);
     }
 
     @NotNull
-    public AbstractPidController makePid(final BigDecimal value, final Integer id) {
-        AbstractPidController controller = new AbstractPidController(PidControllerID.of(id)) {
+    public PidController makePid(final BigDecimal value, final Integer id) {
+        return new PidController(VesselId.of(id)) {
 
             @Override
             public String getName() {
@@ -64,17 +57,16 @@ public enum PidControllerTestFactory {
             @Override
             public String toString() {
                 return new StringJoiner(", ", PidController.class.getSimpleName() + "[", "]")
-                        .add("id=" + getId())
+                        .add("vesselId=" + getId())
                         .add("name=" + getName())
                         .toString();
             }
         };
-        return controller;
     }
 
     @NotNull
-    public AbstractPidController makeFailing(final Exception exception, final Integer id) {
-        AbstractPidController controller = new AbstractPidController(PidControllerID.of(id)) {
+    public PidController makeFailing(final Exception exception, final Integer id) {
+        return new PidController(VesselId.of(id)) {
 
             @Override
             public String getName() {
@@ -94,11 +86,10 @@ public enum PidControllerTestFactory {
             @Override
             public String toString() {
                 return new StringJoiner(", ", PidController.class.getSimpleName() + "[", "]")
-                        .add("id=" + getId())
+                        .add("vesselId=" + getId())
                         .add("name=" + getName())
                         .toString();
             }
         };
-        return controller;
     }
 }

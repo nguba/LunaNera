@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 import java.util.StringJoiner;
 import java.util.UUID;
 
-public class SetpointMeasurement extends TimestampedMeasurement<Setpoint> {
+public class SetpointMeasurement extends Measurement<Setpoint> {
 
-    public SetpointMeasurement(final Setpoint value, final LocalDateTime when, final PidControllerID pidId, final UUID batchId) {
+    public SetpointMeasurement(final Setpoint value, final LocalDateTime when, final VesselId pidId, final UUID batchId) {
         super(value, when, pidId, batchId);
     }
 
