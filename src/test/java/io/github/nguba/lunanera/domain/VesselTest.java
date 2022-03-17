@@ -7,25 +7,25 @@ import java.math.BigDecimal;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class PidControllerTest {
+class VesselTest {
 
-    PidController controller = PidControllerTestFactory.INSTANCE.makeMashTunPid(BigDecimal.ZERO);
+    Vessel controller = PidControllerTestFactory.INSTANCE.makeMashTunPid(BigDecimal.ZERO);
 
     @Test
     void isInitiallyOn() {
-        assertThat(controller.getState()).isEqualTo(PidController.State.ON);
+        assertThat(controller.getState()).isEqualTo(Vessel.State.ON);
     }
 
     @Test
     void toggleOn() {
         controller.on();
-        assertThat(controller.getState()).isEqualTo(PidController.State.ON);
+        assertThat(controller.getState()).isEqualTo(Vessel.State.ON);
     }
 
     @Test
     void toggleOff() {
         controller.off();
-        assertThat(controller.getState()).isEqualTo(PidController.State.OFF);
+        assertThat(controller.getState()).isEqualTo(Vessel.State.OFF);
     }
 
     @Test

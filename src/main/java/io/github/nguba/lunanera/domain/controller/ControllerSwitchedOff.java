@@ -1,4 +1,7 @@
-package io.github.nguba.lunanera.domain;
+package io.github.nguba.lunanera.domain.controller;
+
+import io.github.nguba.lunanera.domain.DomainEvent;
+import io.github.nguba.lunanera.domain.VesselId;
 
 import java.time.LocalDateTime;
 

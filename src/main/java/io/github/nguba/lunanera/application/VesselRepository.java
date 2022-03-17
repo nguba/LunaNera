@@ -1,7 +1,7 @@
 package io.github.nguba.lunanera.application;
 
 import io.github.nguba.lunanera.domain.VesselId;
-import io.github.nguba.lunanera.domain.PidController;
+import io.github.nguba.lunanera.domain.Vessel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,18 +16,18 @@ public class VesselRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(VesselRepository.class);
 
-    private final ConcurrentMap<VesselId, PidController> controllers = new ConcurrentHashMap<>();
+    private final ConcurrentMap<VesselId, Vessel> controllers = new ConcurrentHashMap<>();
 
-    public void add(final PidController pidController) {
-        LOGGER.info("Registering {}", pidController);
-        controllers.putIfAbsent(pidController.getId(), pidController);
+    public void add(final Vessel vessel) {
+        LOGGER.info("Registering {}", vessel);
+        controllers.putIfAbsent(vessel.getId(), vessel);
     }
 
     public boolean has(final VesselId id) {
         return controllers.containsKey(id);
     }
 
-    public Optional<PidController> find(final VesselId id) {
+    public Optional<Vessel> find(final VesselId id) {
         return Optional.ofNullable(controllers.get(id));
     }
 

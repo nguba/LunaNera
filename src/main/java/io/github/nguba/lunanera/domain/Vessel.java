@@ -1,13 +1,16 @@
 package io.github.nguba.lunanera.domain;
 
+import io.github.nguba.lunanera.domain.controller.ControllerSwitchedOff;
+import io.github.nguba.lunanera.domain.controller.ControllerSwitchedOn;
+
 import java.math.BigDecimal;
 import java.util.Optional;
 
-public abstract class PidController {
+public abstract class Vessel {
 
     private State state = State.ON; // could be named as heating / off instead....
 
-    protected PidController(VesselId id) {
+    protected Vessel(VesselId id) {
         this.id = id;
     }
 

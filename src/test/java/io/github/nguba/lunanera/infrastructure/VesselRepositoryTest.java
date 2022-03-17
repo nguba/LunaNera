@@ -1,7 +1,7 @@
 package io.github.nguba.lunanera.infrastructure;
 
 import io.github.nguba.lunanera.application.VesselRepository;
-import io.github.nguba.lunanera.domain.PidController;
+import io.github.nguba.lunanera.domain.Vessel;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -12,7 +12,7 @@ class VesselRepositoryTest {
 
     VesselRepository repository = new VesselRepository();
 
-    private final PidController controller = PidControllerTestFactory.INSTANCE.makeMashTunPid(BigDecimal.ZERO);
+    private final Vessel controller = PidControllerTestFactory.INSTANCE.makeMashTunPid(BigDecimal.ZERO);
 
     @Test
     void addController() {

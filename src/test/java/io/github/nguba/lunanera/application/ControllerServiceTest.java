@@ -2,6 +2,8 @@ package io.github.nguba.lunanera.application;
 
 import io.github.nguba.lunanera.domain.*;
 import io.github.nguba.lunanera.domain.controller.CommandFactory;
+import io.github.nguba.lunanera.domain.controller.ControllerSwitchedOff;
+import io.github.nguba.lunanera.domain.controller.ControllerSwitchedOn;
 import io.github.nguba.lunanera.infrastructure.EventPublisher;
 
 import io.github.nguba.lunanera.infrastructure.PidControllerTestFactory;
@@ -26,7 +28,7 @@ class ControllerServiceTest {
 
     BlockingQueue<Object> events = new LinkedBlockingQueue<>();
 
-    private PidController controller = PidControllerTestFactory.INSTANCE.makeHotLiquorPid(EXPECTED_VALUE);
+    private Vessel controller = PidControllerTestFactory.INSTANCE.makeHotLiquorPid(EXPECTED_VALUE);
 
     CommandFactory commands = new CommandFactory(new EventPublisher() {
         @Override
@@ -73,7 +75,7 @@ class ControllerServiceTest {
     @Test
     @Timeout(value = 1, unit = TimeUnit.SECONDS)
     void switchControllerOffOnFailure() throws InterruptedException {
-        PidController controller =
+        Vessel controller =
                 PidControllerTestFactory.INSTANCE.makeFailing(new IOException("switched off"), Integer.valueOf(3));
 
         processor.request(commands.readProcessValue(controller));

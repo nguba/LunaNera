@@ -3,7 +3,7 @@ package io.github.nguba.lunanera.application;
 import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import io.github.nguba.lunanera.domain.VesselId;
-import io.github.nguba.lunanera.domain.RedLionPXU;
+import io.github.nguba.lunanera.domain.controller.RedLionPXU;
 import io.github.nguba.lunanera.domain.controller.CommandFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

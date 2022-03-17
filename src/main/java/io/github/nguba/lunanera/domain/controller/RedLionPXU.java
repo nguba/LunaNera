@@ -1,6 +1,8 @@
-package io.github.nguba.lunanera.domain;
+package io.github.nguba.lunanera.domain.controller;
 
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
+import io.github.nguba.lunanera.domain.Vessel;
+import io.github.nguba.lunanera.domain.VesselId;
 
 import java.math.BigDecimal;
 import java.util.StringJoiner;
@@ -9,7 +11,7 @@ import java.util.StringJoiner;
  * Note that reads from the PDU are offset by one.  that means that a register stored in offset 1, is actually read as offset 0.
  */
 // TODO refactor into Vessel concept
-public class RedLionPXU extends PidController {
+public class RedLionPXU extends Vessel {
 
     private final ModbusMaster modbusMaster;
 

@@ -1,6 +1,6 @@
 package io.github.nguba.lunanera.infrastructure;
 
-import io.github.nguba.lunanera.domain.PidController;
+import io.github.nguba.lunanera.domain.Vessel;
 import io.github.nguba.lunanera.domain.VesselId;
 import org.jetbrains.annotations.NotNull;
 
@@ -12,29 +12,29 @@ public enum PidControllerTestFactory {
 
     public static final BigDecimal ERROR_SIGNAL = BigDecimal.valueOf(Integer.MIN_VALUE);
 
-    public PidController makeMashTunPid(BigDecimal value) {
+    public Vessel makeMashTunPid(BigDecimal value) {
         return makePid(value, 1);
     }
 
-    public PidController makeBoilKettlePid(BigDecimal value) {
+    public Vessel makeBoilKettlePid(BigDecimal value) {
         return makePid(value, 2);
     }
 
-    public PidController makeHotLiquorPid(BigDecimal value) {
+    public Vessel makeHotLiquorPid(BigDecimal value) {
         return makePid(value, 3);
     }
 
-    public PidController makeFermenterPid(BigDecimal value) {
+    public Vessel makeFermenterPid(BigDecimal value) {
         return makePid(value, 4);
     }
 
-    public PidController makeCellarPid(BigDecimal value) {
+    public Vessel makeCellarPid(BigDecimal value) {
         return makePid(value, 5);
     }
 
     @NotNull
-    public PidController makePid(final BigDecimal value, final Integer id) {
-        return new PidController(VesselId.of(id)) {
+    public Vessel makePid(final BigDecimal value, final Integer id) {
+        return new Vessel(VesselId.of(id)) {
 
             @Override
             public String getName() {
@@ -56,7 +56,7 @@ public enum PidControllerTestFactory {
 
             @Override
             public String toString() {
-                return new StringJoiner(", ", PidController.class.getSimpleName() + "[", "]")
+                return new StringJoiner(", ", Vessel.class.getSimpleName() + "[", "]")
                         .add("vesselId=" + getId())
                         .add("name=" + getName())
                         .toString();
@@ -65,8 +65,8 @@ public enum PidControllerTestFactory {
     }
 
     @NotNull
-    public PidController makeFailing(final Exception exception, final Integer id) {
-        return new PidController(VesselId.of(id)) {
+    public Vessel makeFailing(final Exception exception, final Integer id) {
+        return new Vessel(VesselId.of(id)) {
 
             @Override
             public String getName() {
@@ -85,7 +85,7 @@ public enum PidControllerTestFactory {
 
             @Override
             public String toString() {
-                return new StringJoiner(", ", PidController.class.getSimpleName() + "[", "]")
+                return new StringJoiner(", ", Vessel.class.getSimpleName() + "[", "]")
                         .add("vesselId=" + getId())
                         .add("name=" + getName())
                         .toString();

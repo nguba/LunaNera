@@ -1,6 +1,6 @@
 package io.github.nguba.lunanera.application;
 
-import io.github.nguba.lunanera.domain.PidController;
+import io.github.nguba.lunanera.domain.Vessel;
 import io.github.nguba.lunanera.domain.controller.CommandFactory;
 import io.github.nguba.lunanera.domain.controller.Command;
 import io.github.nguba.lunanera.infrastructure.EventPublisher;
@@ -17,7 +17,7 @@ class CommandServiceTest {
 
     ControllerService consumer = new ControllerService();
 
-    PidController controller = PidControllerTestFactory.INSTANCE.makeHotLiquorPid(BigDecimal.valueOf(895));
+    Vessel controller = PidControllerTestFactory.INSTANCE.makeHotLiquorPid(BigDecimal.valueOf(895));
 
     CommandFactory commands = new CommandFactory(new EventPublisher() {
         @Override

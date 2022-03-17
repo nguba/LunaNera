@@ -1,7 +1,7 @@
 package io.github.nguba.lunanera.application;
 
-import io.github.nguba.lunanera.domain.ControllerSwitchedOn;
-import io.github.nguba.lunanera.domain.ControllerSwitchedOff;
+import io.github.nguba.lunanera.domain.controller.ControllerSwitchedOn;
+import io.github.nguba.lunanera.domain.controller.ControllerSwitchedOff;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.event.EventListener;
