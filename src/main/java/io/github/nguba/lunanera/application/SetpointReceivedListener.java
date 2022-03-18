@@ -2,11 +2,15 @@ package io.github.nguba.lunanera.application;
 
 import io.github.nguba.lunanera.domain.SetpointMeasurement;
 import io.github.nguba.lunanera.domain.SetpointReceived;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.event.EventListener;
 
 import java.sql.SQLException;
 
 public class SetpointReceivedListener {
+
+    public static final Logger LOGGER = LoggerFactory.getLogger(SetpointReceivedListener.class);
 
     private final SetpointMeasurementRepository repository;
 
@@ -16,6 +20,7 @@ public class SetpointReceivedListener {
 
     @EventListener
     public void onSetpointReceived(SetpointReceived event) throws SQLException {
+        LOGGER.debug("{}", event);
         SetpointMeasurement measurement = new SetpointMeasurement(event.getValue(), event.when(), event.vesselId(), event.batchId());
         //repository.delete(event.getDeviceId().getValue().intValue());
         repository.save(measurement);

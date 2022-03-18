@@ -37,7 +37,7 @@ public class ControllerService {
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
-        }, 0, 250, TimeUnit.MILLISECONDS);
+        }, 0, 200, TimeUnit.MILLISECONDS);
         LOGGER.info("Started {}", this);
     }
 
@@ -50,7 +50,7 @@ public class ControllerService {
     }
 
     public Command[] queued() {
-        return commands.toArray(new Command[commands.size()]);
+        return commands.toArray(new Command[0]);
     }
 
     public void scheduleInSeconds(final Command command, final int period) {

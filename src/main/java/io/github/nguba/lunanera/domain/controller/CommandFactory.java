@@ -22,4 +22,8 @@ public class CommandFactory {
     public Command readSetpoint(final Vessel controller) {
         return new ReadSetpoint(publisher, controller, batchId);
     }
+
+    public Command readStatus(final Vessel controller) {
+        return new ReadStatus(publisher, controller, batchId);
+    }
 }

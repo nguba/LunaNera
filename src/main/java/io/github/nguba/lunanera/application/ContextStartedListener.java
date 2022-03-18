@@ -50,7 +50,8 @@ public class ContextStartedListener {
             RedLionPXU pxu = new RedLionPXU(VesselId.of(pidConfig.getId()), master, pidConfig.getName());
             vesselRepository.add(pxu);
             controllerService.scheduleInSeconds(factory.readProcessValue(pxu), pidConfig.getRate());
-            controllerService.scheduleInSeconds(factory.readSetpoint(pxu), 60);
+            controllerService.scheduleInSeconds(factory.readStatus(pxu), pidConfig.getRate());
+            controllerService.scheduleInSeconds(factory.readSetpoint(pxu), 30);
         }
         controllerService.start();
     }

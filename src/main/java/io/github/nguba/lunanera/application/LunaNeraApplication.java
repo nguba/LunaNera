@@ -76,6 +76,11 @@ public class LunaNeraApplication {
     }
 
     @Bean
+    StatusReceivedListener statusReceivedListener() {
+        return new StatusReceivedListener();
+    }
+
+    @Bean
     ControllerService modbusService() {
         return new ControllerService();
     }

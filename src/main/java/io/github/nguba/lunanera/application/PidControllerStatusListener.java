@@ -12,11 +12,11 @@ public class PidControllerStatusListener {
 
     @EventListener
     public void onPidControllerSwitchedOff(ControllerSwitchedOn event) {
-        LOGGER.info("Controller switched off: {}", event.vesselId());
+        LOGGER.debug("Controller switched off: {}", event.vesselId());
     }
 
     @EventListener
     public void onPidControllerSwitchedOn(ControllerSwitchedOff event) {
-        LOGGER.info("Controller switched on: {}", event.vesselId());
+        LOGGER.debug("Controller switched on: {}", event.vesselId());
     }
 }

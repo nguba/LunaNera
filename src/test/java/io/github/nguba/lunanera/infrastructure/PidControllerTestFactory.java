@@ -55,6 +55,11 @@ public enum PidControllerTestFactory {
             }
 
             @Override
+            public BigDecimal readStatus() throws Exception {
+                return value;
+            }
+
+            @Override
             public String toString() {
                 return new StringJoiner(", ", Vessel.class.getSimpleName() + "[", "]")
                         .add("vesselId=" + getId())
@@ -80,6 +85,11 @@ public enum PidControllerTestFactory {
 
             @Override
             public BigDecimal readSetpoint() throws Exception {
+                throw exception;
+            }
+
+            @Override
+            public BigDecimal readStatus() throws Exception {
                 throw exception;
             }
 

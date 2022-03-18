@@ -14,12 +14,6 @@ public abstract class Vessel {
         this.id = id;
     }
 
-    public abstract String getName();
-
-    public abstract BigDecimal readProcessValue() throws Exception;
-
-    public abstract BigDecimal readSetpoint() throws Exception;
-
     public enum State {
         ON, OFF
     }
@@ -45,4 +39,12 @@ public abstract class Vessel {
     public VesselId getId() {
         return id;
     }
+
+    public abstract String getName();
+
+    public abstract BigDecimal readProcessValue() throws Exception;
+
+    public abstract BigDecimal readSetpoint() throws Exception;
+
+    public abstract BigDecimal readStatus() throws Exception;
 }

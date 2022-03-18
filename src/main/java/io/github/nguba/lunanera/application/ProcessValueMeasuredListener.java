@@ -20,6 +20,7 @@ public class ProcessValueMeasuredListener {
 
     @EventListener
     public void onProcessValueMeasured(final ProcessValueReceived event) {
+        LOGGER.debug("{}", event);
         try {
             ProcessValueMeasurement temp =
                     new ProcessValueMeasurement(event.processValue(), event.when(), event.vesselId(), event.batchId());
