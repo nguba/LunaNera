@@ -14,13 +14,13 @@ public class ContextStartedListener {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ContextStartedListener.class);
 
-    private LunaNeraConfig config;
+    private final LunaNeraConfig config;
 
     private final VesselRepository vesselRepository;
 
-    private ControllerService controllerService;
+    private final ControllerService controllerService;
 
-    private ModbusMaster master;
+    private final ModbusMaster master;
 
     private final CommandFactory factory;
 

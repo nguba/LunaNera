@@ -30,7 +30,7 @@ class ControllerServiceTest {
 
     BlockingQueue<Object> events = new LinkedBlockingQueue<>();
 
-    private Vessel controller = PidControllerTestFactory.INSTANCE.makeHotLiquorPid(EXPECTED_VALUE);
+    private final Vessel controller = PidControllerTestFactory.INSTANCE.makeHotLiquorPid(EXPECTED_VALUE);
 
     CommandFactory commands = new CommandFactory(new EventPublisher() {
         @Override
