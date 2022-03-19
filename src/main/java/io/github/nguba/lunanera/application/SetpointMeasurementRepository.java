@@ -1,6 +1,7 @@
 package io.github.nguba.lunanera.application;
 
 import io.github.nguba.lunanera.domain.*;
+import io.github.nguba.lunanera.domain.controller.When;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -21,14 +22,14 @@ public class SetpointMeasurementRepository extends AbstractMeasurementRepository
     }
 
     @Override
-    protected void persistMeasurement(final SetpointMeasurement measurement, final PreparedStatement stmt) throws SQLException {
+    protected void configureSaveStatement(final SetpointMeasurement measurement, final PreparedStatement stmt) throws SQLException {
         stmt.setFloat(1, measurement.getValue().value());
     }
 
     @Override
-    protected SetpointMeasurement rehydrateMeasurement(final UUID batchId, final ResultSet rs, final int pidId, final LocalDateTime when) throws SQLException {
+    protected SetpointMeasurement rehydrateMeasurement(final UUID batchId, final ResultSet rs, final int pidId, final LocalDateTime localDateTime) throws SQLException {
         float pv = rs.getFloat(1);
-        return new SetpointMeasurement(Setpoint.of(pv), when, VesselId.of(pidId), batchId);
+        return new SetpointMeasurement(Setpoint.of(pv), new When(localDateTime), VesselId.of(pidId), batchId);
     }
 
     public int delete(int pidId) throws SQLException {

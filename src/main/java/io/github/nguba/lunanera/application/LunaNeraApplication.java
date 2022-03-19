@@ -51,6 +51,11 @@ public class LunaNeraApplication {
     }
 
     @Bean
+    ControllerStatusRepository controllerStatusRepository(DataSource ds) {
+        return new ControllerStatusRepository(ds);
+    }
+
+    @Bean
     PidControllerStatusListener pidControllerStatusListener() {
         return new PidControllerStatusListener();
     }
@@ -76,8 +81,8 @@ public class LunaNeraApplication {
     }
 
     @Bean
-    StatusReceivedListener statusReceivedListener() {
-        return new StatusReceivedListener();
+    ControllerStatusReceivedListener statusReceivedListener() {
+        return new ControllerStatusReceivedListener();
     }
 
     @Bean

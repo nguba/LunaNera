@@ -4,6 +4,7 @@ import io.github.nguba.lunanera.IntegrationTest;
 import io.github.nguba.lunanera.domain.Vessel;
 import io.github.nguba.lunanera.domain.Setpoint;
 import io.github.nguba.lunanera.domain.SetpointMeasurement;
+import io.github.nguba.lunanera.domain.controller.When;
 import io.github.nguba.lunanera.infrastructure.PidControllerTestFactory;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ class SetpointMeasurementRepositoryTest {
     @Test
     void saveMeasurement() throws Exception {
         Setpoint sp=  Setpoint.of(3.00f);
-        SetpointMeasurement measurement = new SetpointMeasurement(sp, LocalDateTime.now(), controller.getId(), batchId);
+        SetpointMeasurement measurement = new SetpointMeasurement(sp, When.now(), controller.getId(), batchId);
 
         repository.save(measurement);
     }

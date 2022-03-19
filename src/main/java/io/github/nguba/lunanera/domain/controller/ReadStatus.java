@@ -16,6 +16,6 @@ public class ReadStatus extends ModbusCommand {
     @Override
     protected void executeCommandOnDevice(final Vessel pid, final EventPublisher publisher, final UUID batchId) throws Exception {
         final BigDecimal value = pid.readStatus();
-        publisher.publish(StatusReceived.with(ControllerStatusFactory.INSTANCE.makeFrom(value), pid.getId(), batchId));
+        publisher.publish(ControllerStatusReceived.with(ControllerStatusFactory.INSTANCE.makeFrom(value), pid.getId(), batchId));
     }
 }

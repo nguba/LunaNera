@@ -1,25 +1,27 @@
 package io.github.nguba.lunanera.domain;
 
+import io.github.nguba.lunanera.domain.controller.When;
+
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import java.util.UUID;
 
 public abstract class Measurement<T> {
-    protected final LocalDateTime when;
+    protected final When when;
     protected final VesselId pidId;
     protected final UUID batchId;
     protected final T value;
 
-    public Measurement(T value, LocalDateTime when, final VesselId pidId, final UUID batchId) {
+    public Measurement(T value, When when, final VesselId pidId, final UUID batchId) {
         this.value = value;
         // we are truncating to second so that postgresql can handle the timestamps with the correct precision
-        this.when = when.truncatedTo(ChronoUnit.SECONDS);
+        this.when = when;
         this.pidId = pidId;
         this.batchId = batchId;
     }
 
-    public LocalDateTime getWhen() {
+    public When getWhen() {
         return when;
     }
 

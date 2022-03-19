@@ -28,15 +28,15 @@ public abstract class AbstractMeasurementRepository<T extends Measurement> {
 
     public void save(T measurement) throws SQLException {
         try (Connection c = ds.getConnection(); PreparedStatement stmt = c.prepareStatement(queries.get("add"))) {
-            persistMeasurement(measurement, stmt);
+            configureSaveStatement(measurement, stmt);
             stmt.setObject(2, measurement.getBatchId());
             stmt.setInt(3, measurement.getDeviceId().value());
-            stmt.setObject(4, measurement.getWhen());
+            stmt.setObject(4, measurement.getWhen().value());
             stmt.executeUpdate();
         }
     }
 
-    protected abstract void persistMeasurement(final T measurement, final PreparedStatement stmt) throws SQLException;
+    protected abstract void configureSaveStatement(final T measurement, final PreparedStatement stmt) throws SQLException;
 
     public List<T> read(final UUID batchId) throws SQLException {
         final List<T> results = new LinkedList<>();
