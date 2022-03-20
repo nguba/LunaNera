@@ -6,7 +6,7 @@ import io.github.nguba.lunanera.domain.ControllerStatusReceived;
 import org.junit.jupiter.api.Test;
 
 @IntegrationTest
-class ControllerStatusReceivedListenerTest extends DomainEventListenerFixture {
+class StatusReceivedListenerTest extends DomainEventListenerFixture {
 
     @Test
     void persistsEvent() {

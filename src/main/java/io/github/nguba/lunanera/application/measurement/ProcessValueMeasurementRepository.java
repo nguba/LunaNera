@@ -1,5 +1,6 @@
-package io.github.nguba.lunanera.application;
+package io.github.nguba.lunanera.application.measurement;
 
+import io.github.nguba.lunanera.application.measurement.AbstractMeasurementRepository;
 import io.github.nguba.lunanera.domain.VesselId;
 import io.github.nguba.lunanera.domain.ProcessValue;
 import io.github.nguba.lunanera.domain.ProcessValueMeasurement;

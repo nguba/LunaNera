@@ -1,4 +1,4 @@
-package io.github.nguba.lunanera.application;
+package io.github.nguba.lunanera.application.measurement;
 
 import io.github.nguba.lunanera.domain.SetpointMeasurement;
 import io.github.nguba.lunanera.domain.SetpointReceived;
@@ -22,7 +22,6 @@ public class SetpointReceivedListener {
     public void onSetpointReceived(SetpointReceived event) throws SQLException {
         LOGGER.debug("{}", event);
         SetpointMeasurement measurement = new SetpointMeasurement(event.getValue(), event.when(), event.vesselId(), event.batchId());
-        //repository.delete(event.getDeviceId().getValue().intValue());
         repository.save(measurement);
     }
 }

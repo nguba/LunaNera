@@ -1,6 +1,7 @@
 package io.github.nguba.lunanera.application;
 
 import io.github.nguba.lunanera.IntegrationTest;
+import io.github.nguba.lunanera.application.measurement.ProcessValueMeasurementRepository;
 import io.github.nguba.lunanera.domain.ProcessValue;
 import io.github.nguba.lunanera.domain.ProcessValueMeasurement;
 import io.github.nguba.lunanera.domain.ProcessValueReceived;

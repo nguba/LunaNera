@@ -1,6 +1,7 @@
 package io.github.nguba.lunanera.application;
 
 import io.github.nguba.lunanera.IntegrationTest;
+import io.github.nguba.lunanera.application.measurement.SetpointMeasurementRepository;
 import io.github.nguba.lunanera.domain.Vessel;
 import io.github.nguba.lunanera.domain.Setpoint;
 import io.github.nguba.lunanera.domain.SetpointMeasurement;
@@ -11,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @IntegrationTest

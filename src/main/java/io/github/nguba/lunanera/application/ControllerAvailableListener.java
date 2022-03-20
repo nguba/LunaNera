@@ -6,9 +6,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.event.EventListener;
 
-public class PidControllerStatusListener {
+/**
+ * Monitors the availability of a controller.  This could be due to errors or the device being switched off.
+ */
+public class ControllerAvailableListener {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PidControllerStatusListener.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ControllerAvailableListener.class);
 
     @EventListener
     public void onPidControllerSwitchedOff(ControllerSwitchedOn event) {

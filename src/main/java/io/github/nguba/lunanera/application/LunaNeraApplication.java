@@ -1,6 +1,12 @@
 package io.github.nguba.lunanera.application;
 
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
+import io.github.nguba.lunanera.application.measurement.ProcessValueMeasuredListener;
+import io.github.nguba.lunanera.application.measurement.ProcessValueMeasurementRepository;
+import io.github.nguba.lunanera.application.measurement.SetpointMeasurementRepository;
+import io.github.nguba.lunanera.application.measurement.SetpointReceivedListener;
+import io.github.nguba.lunanera.application.status.StatusReceivedListener;
+import io.github.nguba.lunanera.application.status.StatusRepository;
 import io.github.nguba.lunanera.domain.controller.CommandFactory;
 import io.github.nguba.lunanera.infrastructure.DomainEventPublisher;
 import io.github.nguba.lunanera.infrastructure.EventPublisher;
@@ -51,13 +57,13 @@ public class LunaNeraApplication {
     }
 
     @Bean
-    ControllerStatusRepository controllerStatusRepository(DataSource ds) {
-        return new ControllerStatusRepository(ds);
+    StatusRepository controllerStatusRepository(DataSource ds) {
+        return new StatusRepository(ds);
     }
 
     @Bean
-    PidControllerStatusListener pidControllerStatusListener() {
-        return new PidControllerStatusListener();
+    ControllerAvailableListener pidControllerStatusListener() {
+        return new ControllerAvailableListener();
     }
 
     @Bean
@@ -81,8 +87,8 @@ public class LunaNeraApplication {
     }
 
     @Bean
-    ControllerStatusReceivedListener statusReceivedListener() {
-        return new ControllerStatusReceivedListener();
+    StatusReceivedListener statusReceivedListener(StatusRepository repository) {
+        return new StatusReceivedListener(repository);
     }
 
     @Bean

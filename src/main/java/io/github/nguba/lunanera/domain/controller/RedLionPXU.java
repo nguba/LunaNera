@@ -33,22 +33,21 @@ public class RedLionPXU extends Vessel {
 
     @Override
     public BigDecimal readProcessValue() throws Exception {
-        return readRegister(1);
+        return readRegister(0);
     }
 
     @Override
     public BigDecimal readSetpoint() throws Exception {
-        return readRegister(2);
+        return readRegister(1);
     }
 
     @Override
     public BigDecimal readStatus() throws Exception {
-        return readRegister(18);
+        return readRegister(17);
     }
 
     private BigDecimal readRegister(final int register) throws ModbusProtocolException, ModbusNumberException, ModbusIOException {
-        int startAddress = register - 1;
-        int[] registerValues = modbusMaster.readHoldingRegisters(getId().value(), startAddress, 1);
+        int[] registerValues = modbusMaster.readHoldingRegisters(id.value(), register, 1);
         return BigDecimal.valueOf(registerValues[0]);
     }
 

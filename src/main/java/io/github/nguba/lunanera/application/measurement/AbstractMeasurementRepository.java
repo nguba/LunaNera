@@ -1,4 +1,4 @@
-package io.github.nguba.lunanera.application;
+package io.github.nguba.lunanera.application.measurement;
 
 import io.github.nguba.lunanera.domain.Measurement;
 

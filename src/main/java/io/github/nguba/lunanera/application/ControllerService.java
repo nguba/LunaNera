@@ -37,7 +37,7 @@ public class ControllerService {
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
-        }, 1, 200, TimeUnit.MILLISECONDS);
+        }, 1, 500, TimeUnit.MILLISECONDS);
         LOGGER.info("Started {}", this);
     }
 

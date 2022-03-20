@@ -34,7 +34,7 @@ public abstract class Vessel {
         return Optional.of(ControllerSwitchedOff.on(id));
     }
 
-    private final VesselId id;
+    protected final VesselId id;
 
     public VesselId getId() {
         return id;
