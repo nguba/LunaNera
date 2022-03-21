@@ -5,7 +5,7 @@ import io.github.nguba.lunanera.application.measurement.SetpointMeasurementRepos
 import io.github.nguba.lunanera.domain.Vessel;
 import io.github.nguba.lunanera.domain.Setpoint;
 import io.github.nguba.lunanera.domain.SetpointMeasurement;
-import io.github.nguba.lunanera.domain.controller.When;
+import io.github.nguba.lunanera.domain.When;
 import io.github.nguba.lunanera.infrastructure.PidControllerTestFactory;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

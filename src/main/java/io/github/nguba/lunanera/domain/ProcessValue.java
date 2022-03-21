@@ -3,7 +3,7 @@ package io.github.nguba.lunanera.domain;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public record ProcessValue(Float value) implements ValueObject<Float> {
+public record ProcessValue(Float value)  {
 
     public static ProcessValue of(final float value) {
         return new ProcessValue(value);

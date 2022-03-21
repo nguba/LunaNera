@@ -108,7 +108,7 @@ class ControllerServiceTest {
         controllerService.request(commands.readProcessValue(controller));
 
         Object event = events.take();
-        assertThat(event).isExactlyInstanceOf(ControllerSwitchedOn.class);
+        assertThat(event).isExactlyInstanceOf(ControllerSwitchedOff.class);
     }
 
     @Test
@@ -118,7 +118,7 @@ class ControllerServiceTest {
         controllerService.request(commands.readProcessValue(controller));
 
         assertThat(events.take()).isInstanceOf(ProcessValueReceived.class);
-        assertThat(events.take()).isExactlyInstanceOf(ControllerSwitchedOff.class);
+        assertThat(events.take()).isExactlyInstanceOf(ControllerSwitchedOn.class);
     }
 
 }

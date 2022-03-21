@@ -21,17 +21,17 @@ public abstract class Vessel {
         return state;
     }
 
-    public Optional<ControllerSwitchedOn> off() {
+    public Optional<ControllerSwitchedOff> off() {
         if(State.OFF.equals(state)) return Optional.empty();
         this.state = State.OFF;
-        return Optional.of(ControllerSwitchedOn.on(id));
+        return Optional.of(ControllerSwitchedOff.on(id));
     }
 
-    public Optional<ControllerSwitchedOff> on() {
+    public Optional<ControllerSwitchedOn> on() {
         if(State.ON.equals(state)) return Optional.empty();
 
         this.state = State.ON;
-        return Optional.of(ControllerSwitchedOff.on(id));
+        return Optional.of(ControllerSwitchedOn.on(id));
     }
 
     protected final VesselId id;

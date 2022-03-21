@@ -5,6 +5,7 @@ import io.github.nguba.lunanera.application.measurement.ProcessValueMeasuredList
 import io.github.nguba.lunanera.application.measurement.ProcessValueMeasurementRepository;
 import io.github.nguba.lunanera.application.measurement.SetpointMeasurementRepository;
 import io.github.nguba.lunanera.application.measurement.SetpointReceivedListener;
+import io.github.nguba.lunanera.application.status.ControllerAvailableListener;
 import io.github.nguba.lunanera.application.status.StatusReceivedListener;
 import io.github.nguba.lunanera.application.status.StatusRepository;
 import io.github.nguba.lunanera.domain.controller.CommandFactory;
@@ -57,13 +58,13 @@ public class LunaNeraApplication {
     }
 
     @Bean
-    StatusRepository controllerStatusRepository(DataSource ds) {
+    StatusRepository statusRepository(DataSource ds) {
         return new StatusRepository(ds);
     }
 
     @Bean
-    ControllerAvailableListener pidControllerStatusListener() {
-        return new ControllerAvailableListener();
+    ControllerAvailableListener pidControllerStatusListener(StatusRepository repository) {
+        return new ControllerAvailableListener(repository);
     }
 
     @Bean

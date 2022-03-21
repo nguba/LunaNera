@@ -1,4 +1,4 @@
-package io.github.nguba.lunanera.domain.controller;
+package io.github.nguba.lunanera.domain;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;

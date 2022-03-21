@@ -1,8 +1,5 @@
 package io.github.nguba.lunanera.domain;
 
-import io.github.nguba.lunanera.domain.controller.When;
-
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record ProcessValueReceived(ProcessValue processValue,

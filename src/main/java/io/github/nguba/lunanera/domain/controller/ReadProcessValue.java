@@ -26,7 +26,6 @@ public class ReadProcessValue extends ModbusCommand {
     @Override
     public String toString() {
         return new StringJoiner(", ", ReadProcessValue.class.getSimpleName() + "[", "]")
-                .add("publisher=" + publisher)
                 .add("pid=" + pid)
                 .toString();
     }

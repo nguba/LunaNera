@@ -1,8 +1,7 @@
 package io.github.nguba.lunanera.application.measurement;
 
-import io.github.nguba.lunanera.application.measurement.AbstractMeasurementRepository;
 import io.github.nguba.lunanera.domain.*;
-import io.github.nguba.lunanera.domain.controller.When;
+import io.github.nguba.lunanera.domain.When;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

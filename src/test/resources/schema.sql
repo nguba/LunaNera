@@ -41,7 +41,7 @@ ALTER TABLE IF EXISTS public.setpoint
 ---
 CREATE TABLE IF NOT EXISTS public.status
 (
-    value VARCHAR NOT NULL,
+    value numeric(4, 0) NOT NULL,
     batch_id uuid NOT NULL,
     pid_id smallint NOT NULL,
     date timestamp without time zone

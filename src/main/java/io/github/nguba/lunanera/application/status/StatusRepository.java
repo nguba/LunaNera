@@ -3,7 +3,7 @@ package io.github.nguba.lunanera.application.status;
 import io.github.nguba.lunanera.domain.ControllerStatus;
 import io.github.nguba.lunanera.domain.ControllerStatusReceived;
 import io.github.nguba.lunanera.domain.VesselId;
-import io.github.nguba.lunanera.domain.controller.When;
+import io.github.nguba.lunanera.domain.When;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -29,7 +29,7 @@ public class StatusRepository {
         if (find(event.vesselId()).isPresent()) {
             try (Connection c = dataSource.getConnection();
                  PreparedStatement stmt = c.prepareStatement("UPDATE status SET value=?, batch_id=?, date=? WHERE pid_id=?")) {
-                stmt.setString(1, event.value().toString());
+                stmt.setInt(1, event.value().value());
                 stmt.setObject(2, event.batchId());
                 stmt.setObject(3, event.when().value());
                 stmt.setInt(4, event.vesselId().value());
@@ -37,7 +37,7 @@ public class StatusRepository {
             }
         } else {
             try (Connection c = dataSource.getConnection(); PreparedStatement stmt = c.prepareStatement(INSERT)) {
-                stmt.setString(1, event.value().toString());
+                stmt.setInt(1, event.value().value());
                 stmt.setObject(2, event.batchId());
                 stmt.setInt(3, event.vesselId().value());
                 stmt.setObject(4, event.when().value());
@@ -53,11 +53,11 @@ public class StatusRepository {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    String value = rs.getString("value");
+                    int value = rs.getInt("value");
                     UUID batchId = rs.getObject("batch_id", UUID.class);
                     LocalDateTime when = rs.getObject("date", LocalDateTime.class);
                     return Optional.of(
-                            ControllerStatusReceived.with(ControllerStatus.valueOf(value), vesselId, batchId, new When(when)));
+                            ControllerStatusReceived.with(ControllerStatus.of(value), vesselId, batchId, new When(when)));
                 }
             }
         }

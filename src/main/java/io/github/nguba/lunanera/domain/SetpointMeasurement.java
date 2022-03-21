@@ -1,8 +1,5 @@
 package io.github.nguba.lunanera.domain;
 
-import io.github.nguba.lunanera.domain.controller.When;
-
-import java.time.LocalDateTime;
 import java.util.StringJoiner;
 import java.util.UUID;
 

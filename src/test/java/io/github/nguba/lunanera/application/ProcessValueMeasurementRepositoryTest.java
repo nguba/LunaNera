@@ -5,7 +5,7 @@ import io.github.nguba.lunanera.application.measurement.ProcessValueMeasurementR
 import io.github.nguba.lunanera.domain.VesselId;
 import io.github.nguba.lunanera.domain.ProcessValue;
 import io.github.nguba.lunanera.domain.ProcessValueMeasurement;
-import io.github.nguba.lunanera.domain.controller.When;
+import io.github.nguba.lunanera.domain.When;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
