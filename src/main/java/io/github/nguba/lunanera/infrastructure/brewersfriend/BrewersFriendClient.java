@@ -7,9 +7,11 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.io.FileNotFoundException;
 import java.net.URI;
 import java.util.Collection;
 
@@ -65,5 +67,22 @@ public class BrewersFriendClient {
                 rest.exchange("https://log.brewersfriend.com/stream/" + apiKey, HttpMethod.POST, requestEntity, Void.class);
 
         LOGGER.debug("STREAM: {}", response.getBody());
+    }
+
+    public RecipeResponse getRecipe(final int id) throws FileNotFoundException {
+        URI uri = UriComponentsBuilder.fromUri(baseUri)
+                .pathSegment("recipes", String.valueOf(id)).build().toUri();
+
+        try {
+            ResponseEntity<RecipesResponse> recipes =
+                    rest.exchange(uri, HttpMethod.GET, makeRequestEntity(), RecipesResponse.class);
+            RecipeResponse recipe = recipes.getBody().getRecipe();
+            return recipe;
+        } catch(HttpClientErrorException clientError) {
+            if(clientError.getStatusCode().is4xxClientError()) {
+                throw new FileNotFoundException(clientError.getMessage());
+            }
+            throw clientError;
+        }
     }
 }

@@ -9,14 +9,19 @@ import org.springframework.http.HttpEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.FileNotFoundException;
 import java.util.Collection;
 import java.util.concurrent.*;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
 @SpringBootTest(classes = {BrewersFriendClient.class})
 @ActiveProfiles("test")
 class BrewersFriendClientTest {
+
+    public static final RecipeResponse NICOSTINER_DUNKEL =
+            new RecipeResponse(1240852, "Nicostiner Dunkel", 0, 13.4184f, 5.6f);
 
     private final RestTemplate rest = new RestTemplate();
 
@@ -41,10 +46,21 @@ class BrewersFriendClientTest {
     @Test
     void findAllRecipes() {
         Collection<RecipeResponse> recipes = client.getRecipes();
-        assertThat(recipes).asList().contains(new RecipeResponse(1240852, "Nicostiner Dunkel", 0));
+        assertThat(recipes).asList().contains(NICOSTINER_DUNKEL);
     }
 
     @Test
+    void loadRecipe() throws Exception {
+        assertThat(client.getRecipe(1240852)).isEqualTo(NICOSTINER_DUNKEL);
+    }
+
+    @Test
+    void loadRecipe_Unknown() {
+        assertThatExceptionOfType(FileNotFoundException.class).isThrownBy(() -> client.getRecipe(1240850));
+    }
+
+    @Test
+    @Disabled
     void findAllBrewSessions() {
         Collection<BrewSessionResponse> recipes = client.getBrewSessions();
 
