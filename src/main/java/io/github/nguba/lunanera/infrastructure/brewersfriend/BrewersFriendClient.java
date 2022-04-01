@@ -3,13 +3,12 @@ package io.github.nguba.lunanera.infrastructure.brewersfriend;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
+import reactor.core.publisher.Mono;
 
 import java.io.FileNotFoundException;
 import java.net.URI;
@@ -17,69 +16,47 @@ import java.util.Collection;
 
 public class BrewersFriendClient {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(BrewersFriendClient.class);
-
-    private final RestTemplate rest = new RestTemplate();
-
-    private final URI baseUri = URI.create("https://api.brewersfriend.com/v1/");
-
     public BrewersFriendClient(@Value("${brewersfriend.api.key}") final String apiKey) {
         this.apiKey = apiKey;
     }
 
     private final String apiKey;
 
-    public HttpEntity<Object> makeRequestEntity() {
-        return makeRequestEntity(null);
-    }
+    WebClient client = WebClient.create("https://api.brewersfriend.com/v1/");
 
-    public HttpEntity<Object> makeRequestEntity(Object body) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("X-API-Key", apiKey);
-        return new HttpEntity<Object>(body, headers);
-    }
+    public Collection<RecipeResponse> findAllRecipes() {
+        Mono<RecipesResponse> response = client.get().uri("/recipes")
+                .header("X-API-Key", apiKey)
+                .retrieve().bodyToMono(RecipesResponse.class);
 
-    public Collection<RecipeResponse> getRecipes() {
-        URI uri = UriComponentsBuilder.fromUri(baseUri)
-                .path("recipes").queryParam("snapshots", false).build().toUri();
-        ResponseEntity<RecipesResponse> recipes =
-                rest.exchange(uri, HttpMethod.GET, makeRequestEntity(), RecipesResponse.class);
-
-        LOGGER.debug("{}", recipes.getBody());
-
-        return recipes.getBody().getItems();
+        return response.block().getItems();
     }
 
     public Collection<BrewSessionResponse> getBrewSessions() {
-        URI uri = UriComponentsBuilder.fromUri(baseUri).path("brewsessions").build().toUri();
-        ResponseEntity<BrewSessionsResponse> response =
-                rest.exchange(uri, HttpMethod.GET, makeRequestEntity(), BrewSessionsResponse.class);
+        Mono<BrewSessionsResponse> response = client.get().uri("/brewsessions")
+                .header("X-API-Key", apiKey)
+                .retrieve().bodyToMono(BrewSessionsResponse.class);
 
-        LOGGER.debug("{}", response.getBody());
-
-        return response.getBody().getItems();
+        return response.block().getItems();
     }
 
     public void submit(final FermentationEntry entry) {
-        HttpEntity<Object> requestEntity = makeRequestEntity(entry);
-
-        ResponseEntity<Void> response =
-                rest.exchange("https://log.brewersfriend.com/stream/" + apiKey, HttpMethod.POST, requestEntity, Void.class);
-
-        LOGGER.debug("STREAM: {}", response.getBody());
+        WebClient.create("https://log.brewersfriend.com/stream/" + apiKey).post()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(Mono.just(entry), FermentationEntry.class)
+                .exchangeToMono(response -> {
+                    return response.bodyToMono(String.class);
+                }).block();
     }
 
     public RecipeResponse getRecipe(final int id) throws FileNotFoundException {
-        URI uri = UriComponentsBuilder.fromUri(baseUri)
-                .pathSegment("recipes", String.valueOf(id)).build().toUri();
-
+        Mono<RecipesResponse> response = client.get().uri("/recipes/" + id)
+                .header("X-API-Key", apiKey)
+                .retrieve().bodyToMono(RecipesResponse.class);
         try {
-            ResponseEntity<RecipesResponse> recipes =
-                    rest.exchange(uri, HttpMethod.GET, makeRequestEntity(), RecipesResponse.class);
-            RecipeResponse recipe = recipes.getBody().getRecipe();
-            return recipe;
-        } catch(HttpClientErrorException clientError) {
-            if(clientError.getStatusCode().is4xxClientError()) {
+            return response.block().getRecipe();
+        } catch (WebClientResponseException clientError) {
+            if (clientError.getStatusCode().is4xxClientError()) {
                 throw new FileNotFoundException(clientError.getMessage());
             }
             throw clientError;

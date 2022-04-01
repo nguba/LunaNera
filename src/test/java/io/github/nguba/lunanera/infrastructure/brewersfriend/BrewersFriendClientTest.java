@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.RestTemplate;
+import org.testcontainers.shaded.com.google.common.util.concurrent.AtomicDouble;
 
 import java.io.FileNotFoundException;
 import java.util.Collection;
@@ -32,20 +33,8 @@ class BrewersFriendClientTest {
     BrewersFriendClient client;
 
     @Test
-    void hasApiKeyHeaderEntry() {
-        HttpEntity<Object> entity = client.makeRequestEntity();
-        assertThat(entity.getHeaders().containsKey("X-API-Key")).isTrue();
-    }
-
-    @Test
-    void hasApiKeyHeaderValue() {
-        HttpEntity<Object> entity = client.makeRequestEntity();
-        assertThat(entity.getHeaders().getFirst("X-API-Key")).isEqualTo(key);
-    }
-
-    @Test
     void findAllRecipes() {
-        Collection<RecipeResponse> recipes = client.getRecipes();
+        Collection<RecipeResponse> recipes = client.findAllRecipes();
         assertThat(recipes).asList().contains(NICOSTINER_DUNKEL);
     }
 
@@ -64,24 +53,23 @@ class BrewersFriendClientTest {
     void findAllBrewSessions() {
         Collection<BrewSessionResponse> recipes = client.getBrewSessions();
 
-        assertThat(recipes).asList().contains(new BrewSessionResponse(424680, 1263445));
+        assertThat(recipes).asList().contains(new BrewSessionResponse(424814, 1263911));
     }
 
     @Test
     @Disabled
     void submitReading() throws InterruptedException {
 
-        CountDownLatch latch = new CountDownLatch(10);
+        CountDownLatch latch = new CountDownLatch(20);
+
+        AtomicDouble temp = new AtomicDouble(6.2);
+        AtomicDouble gravity = new AtomicDouble(13.4f);
 
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
         executorService.scheduleAtFixedRate(() -> {
-            float startTemp = 6.2f;
-            float temp = startTemp + 0.5f;
-            float startGravity = 12.8f;
-            float gravity = startGravity - 0.2f;
-            FermentationEntry entry = new FermentationEntry(temp, gravity);
-            startTemp = temp;
-            startGravity = gravity;
+            FermentationEntry entry = new FermentationEntry(temp.floatValue(), gravity.floatValue());
+            temp.addAndGet(0.5);
+            gravity.set(gravity.doubleValue() - 0.3);
             client.submit(entry);
             latch.countDown();
         }, 0, 15, TimeUnit.MINUTES);
