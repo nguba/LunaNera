@@ -17,7 +17,7 @@ public record RecipeRepository(BrewersFriendClient client) {
     }
 
     public Collection<Recipe> findAll() {
-        Collection<RecipeResponse> recipeResponses = client.getRecipes();
+        Collection<RecipeResponse> recipeResponses = client.findAllRecipes();
         List<Recipe> recipes = new ArrayList<>(recipeResponses.size());
         for (RecipeResponse response : recipeResponses) {
             RecipeId id = new RecipeId(response.id());
