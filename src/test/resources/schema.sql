@@ -54,5 +54,11 @@ CREATE INDEX batch_status_idx ON public.status(batch_id, pid_id);
 ALTER TABLE IF EXISTS public.status
     OWNER to postgres;
 
+CREATE TABLE IF NOT EXISTS public.controller_status
+(
+    value numeric(4, 0) NOT NULL
+) TABLESPACE pg_default;
 
+ALTER TABLE IF EXISTS public.controller_status
+    OWNER to postgres;
 
