@@ -1,17 +1,12 @@
 package io.github.nguba.lunanera.infrastructure.brewersfriend;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Mono;
 
 import java.io.FileNotFoundException;
-import java.net.URI;
 import java.util.Collection;
 
 public class BrewersFriendClient {

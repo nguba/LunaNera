@@ -31,7 +31,7 @@ public abstract class AbstractMeasurementRepository<T extends Measurement> {
             configureSaveStatement(measurement, stmt);
             stmt.setObject(2, measurement.getBatchId());
             stmt.setInt(3, measurement.getDeviceId().value());
-            stmt.setObject(4, measurement.getWhen().value());
+            stmt.setObject(4, measurement.getWhen().toLocalDateTime());
             stmt.executeUpdate();
         }
     }

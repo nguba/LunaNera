@@ -31,7 +31,7 @@ public class StatusRepository {
                  PreparedStatement stmt = c.prepareStatement("UPDATE status SET value=?, batch_id=?, date=? WHERE pid_id=?")) {
                 stmt.setInt(1, event.value().value());
                 stmt.setObject(2, event.batchId());
-                stmt.setObject(3, event.when().value());
+                stmt.setObject(3, event.when().toLocalDateTime());
                 stmt.setInt(4, event.vesselId().value());
                 stmt.executeUpdate();
             }
@@ -40,7 +40,7 @@ public class StatusRepository {
                 stmt.setInt(1, event.value().value());
                 stmt.setObject(2, event.batchId());
                 stmt.setInt(3, event.vesselId().value());
-                stmt.setObject(4, event.when().value());
+                stmt.setObject(4, event.when().toLocalDateTime());
                 stmt.executeUpdate();
             }
         }
