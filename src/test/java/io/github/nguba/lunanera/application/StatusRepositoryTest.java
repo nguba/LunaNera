@@ -3,14 +3,12 @@ package io.github.nguba.lunanera.application;
 import io.github.nguba.lunanera.IntegrationTest;
 import io.github.nguba.lunanera.application.status.StatusRepository;
 import io.github.nguba.lunanera.domain.BatchId;
-import io.github.nguba.lunanera.domain.ControllerStatus;
+import io.github.nguba.lunanera.domain.instrumentation.ControllerStatus;
 import io.github.nguba.lunanera.domain.ControllerStatusReceived;
 import io.github.nguba.lunanera.domain.VesselId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
-
-import java.util.UUID;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 

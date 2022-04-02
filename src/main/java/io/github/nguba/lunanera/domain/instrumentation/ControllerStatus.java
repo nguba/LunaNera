@@ -1,4 +1,4 @@
-package io.github.nguba.lunanera.domain;
+package io.github.nguba.lunanera.domain.instrumentation;
 
 // Read register 18
 // 0: Stop, 1: Run, 2 = End (Profile mode), 3 = Pause

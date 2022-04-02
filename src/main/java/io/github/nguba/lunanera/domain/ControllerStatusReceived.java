@@ -1,6 +1,6 @@
 package io.github.nguba.lunanera.domain;
 
-import java.util.UUID;
+import io.github.nguba.lunanera.domain.instrumentation.ControllerStatus;
 
 public record ControllerStatusReceived(ControllerStatus value,
                                        When when, VesselId vesselId,

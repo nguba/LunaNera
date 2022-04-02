@@ -1,7 +1,7 @@
 package io.github.nguba.lunanera.application.status;
 
 import io.github.nguba.lunanera.domain.BatchId;
-import io.github.nguba.lunanera.domain.ControllerStatus;
+import io.github.nguba.lunanera.domain.instrumentation.ControllerStatus;
 import io.github.nguba.lunanera.domain.ControllerStatusReceived;
 import io.github.nguba.lunanera.domain.controller.ControllerSwitchedOn;
 import io.github.nguba.lunanera.domain.controller.ControllerSwitchedOff;
@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.event.EventListener;
 
 import java.sql.SQLException;
-import java.util.UUID;
 
 /**
  * Monitors the availability of a controller.  This could be due to errors or the device being switched off.
