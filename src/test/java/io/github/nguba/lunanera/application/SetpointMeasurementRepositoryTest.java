@@ -2,10 +2,7 @@ package io.github.nguba.lunanera.application;
 
 import io.github.nguba.lunanera.IntegrationTest;
 import io.github.nguba.lunanera.application.measurement.SetpointMeasurementRepository;
-import io.github.nguba.lunanera.domain.Vessel;
-import io.github.nguba.lunanera.domain.Setpoint;
-import io.github.nguba.lunanera.domain.SetpointMeasurement;
-import io.github.nguba.lunanera.domain.When;
+import io.github.nguba.lunanera.domain.*;
 import io.github.nguba.lunanera.infrastructure.PidControllerTestFactory;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -21,7 +18,7 @@ class SetpointMeasurementRepositoryTest {
     @Autowired
     SetpointMeasurementRepository repository;
 
-    UUID batchId = UUID.randomUUID();
+    BatchId batchId = BatchId.create();
 
     Vessel controller = PidControllerTestFactory.INSTANCE.makeFermenterPid(BigDecimal.valueOf(50));
 

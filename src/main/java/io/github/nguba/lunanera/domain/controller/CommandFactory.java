@@ -1,5 +1,6 @@
 package io.github.nguba.lunanera.domain.controller;
 
+import io.github.nguba.lunanera.domain.BatchId;
 import io.github.nguba.lunanera.domain.Vessel;
 import io.github.nguba.lunanera.infrastructure.EventPublisher;
 
@@ -9,7 +10,7 @@ public class CommandFactory {
 
     private final EventPublisher publisher;
 
-    private final UUID batchId = UUID.randomUUID();
+    private final BatchId batchId = BatchId.create();
 
     public CommandFactory(final EventPublisher publisher) {
         this.publisher = publisher;

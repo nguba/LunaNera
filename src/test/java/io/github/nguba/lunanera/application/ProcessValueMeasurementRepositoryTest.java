@@ -2,10 +2,7 @@ package io.github.nguba.lunanera.application;
 
 import io.github.nguba.lunanera.IntegrationTest;
 import io.github.nguba.lunanera.application.measurement.ProcessValueMeasurementRepository;
-import io.github.nguba.lunanera.domain.VesselId;
-import io.github.nguba.lunanera.domain.ProcessValue;
-import io.github.nguba.lunanera.domain.ProcessValueMeasurement;
-import io.github.nguba.lunanera.domain.When;
+import io.github.nguba.lunanera.domain.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -30,7 +27,7 @@ public class ProcessValueMeasurementRepositoryTest {
 
     @Test
     void addMeasurement() throws Exception {
-        UUID batchId = UUID.randomUUID();
+        BatchId batchId = BatchId.create();
 
         ProcessValueMeasurement expected = new ProcessValueMeasurement(ProcessValue.of(23.1f), When.now(), VesselId.of(245), batchId);
         repository.save(expected);

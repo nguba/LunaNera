@@ -1,5 +1,6 @@
 package io.github.nguba.lunanera.application.measurement;
 
+import io.github.nguba.lunanera.domain.BatchId;
 import io.github.nguba.lunanera.domain.Measurement;
 
 import javax.sql.DataSource;
@@ -38,7 +39,7 @@ public abstract class AbstractMeasurementRepository<T extends Measurement> {
 
     protected abstract void configureSaveStatement(final T measurement, final PreparedStatement stmt) throws SQLException;
 
-    public List<T> read(final UUID batchId) throws SQLException {
+    public List<T> read(final BatchId batchId) throws SQLException {
         final List<T> results = new LinkedList<>();
         try (Connection c = ds.getConnection(); PreparedStatement stmt = c.prepareStatement(queries.get("read"))) {
             stmt.setObject(1, batchId);
@@ -54,9 +55,9 @@ public abstract class AbstractMeasurementRepository<T extends Measurement> {
         return Collections.unmodifiableList(results);
     }
 
-    protected abstract T rehydrateMeasurement(final UUID batchId, final ResultSet rs, final int pidId, final LocalDateTime when) throws SQLException;
+    protected abstract T rehydrateMeasurement(final BatchId batchId, final ResultSet rs, final int pidId, final LocalDateTime when) throws SQLException;
 
-    public void delete(final UUID batchId) throws SQLException {
+    public void delete(final BatchId batchId) throws SQLException {
         try (Connection c = ds.getConnection();
              PreparedStatement stmt = c.prepareStatement(queries.get("delete_batch"))) {
             stmt.setObject(1, batchId);

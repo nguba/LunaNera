@@ -1,9 +1,6 @@
 package io.github.nguba.lunanera.application.status;
 
-import io.github.nguba.lunanera.domain.ControllerStatus;
-import io.github.nguba.lunanera.domain.ControllerStatusReceived;
-import io.github.nguba.lunanera.domain.VesselId;
-import io.github.nguba.lunanera.domain.When;
+import io.github.nguba.lunanera.domain.*;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -54,7 +51,7 @@ public class StatusRepository {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     int value = rs.getInt("value");
-                    UUID batchId = rs.getObject("batch_id", UUID.class);
+                    BatchId batchId = new BatchId(rs.getObject("batch_id", UUID.class));
                     LocalDateTime when = rs.getObject("date", LocalDateTime.class);
                     return Optional.of(
                             ControllerStatusReceived.with(ControllerStatus.of(value), vesselId, batchId, new When(when)));

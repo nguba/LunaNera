@@ -1,5 +1,6 @@
 package io.github.nguba.lunanera.domain.controller;
 
+import io.github.nguba.lunanera.domain.BatchId;
 import io.github.nguba.lunanera.domain.Vessel;
 import io.github.nguba.lunanera.domain.Setpoint;
 import io.github.nguba.lunanera.domain.SetpointReceived;
@@ -11,12 +12,12 @@ import java.util.UUID;
 
 public class ReadSetpoint extends ModbusCommand {
 
-    public ReadSetpoint(final EventPublisher publisher, final Vessel pid, final UUID batchId) {
+    public ReadSetpoint(final EventPublisher publisher, final Vessel pid, final BatchId batchId) {
         super(publisher, pid, batchId);
     }
 
     @Override
-    protected void executeCommandOnDevice(final Vessel pid, final EventPublisher publisher, final UUID batchId) throws Exception {
+    protected void executeCommandOnDevice(final Vessel pid, final EventPublisher publisher, final BatchId batchId) throws Exception {
         if(Vessel.State.OFF.equals(pid.getState()))
             return;
 

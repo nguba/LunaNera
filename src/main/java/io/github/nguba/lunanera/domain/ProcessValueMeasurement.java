@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class ProcessValueMeasurement extends Measurement<ProcessValue> {
 
-    public ProcessValueMeasurement(final ProcessValue value, final When when, final VesselId pidId, final UUID batchId) {
+    public ProcessValueMeasurement(final ProcessValue value, final When when, final VesselId pidId, final BatchId batchId) {
         super(value, when, pidId, batchId);
     }
 

@@ -10,12 +10,12 @@ import java.util.UUID;
 // Read register 18
 public class ReadStatus extends ModbusCommand {
 
-    public ReadStatus(final EventPublisher publisher, final Vessel pid, final UUID batchId) {
+    public ReadStatus(final EventPublisher publisher, final Vessel pid, final BatchId batchId) {
         super(publisher, pid, batchId);
     }
 
     @Override
-    protected void executeCommandOnDevice(final Vessel pid, final EventPublisher publisher, final UUID batchId) throws Exception {
+    protected void executeCommandOnDevice(final Vessel pid, final EventPublisher publisher, final BatchId batchId) throws Exception {
         if(Vessel.State.OFF.equals(pid.getState()))
             return;
         final BigDecimal value = pid.readStatus();

@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class SetpointMeasurement extends Measurement<Setpoint> {
 
-    public SetpointMeasurement(final Setpoint value, final When when, final VesselId pidId, final UUID batchId) {
+    public SetpointMeasurement(final Setpoint value, final When when, final VesselId pidId, final BatchId batchId) {
         super(value, when, pidId, batchId);
     }
 

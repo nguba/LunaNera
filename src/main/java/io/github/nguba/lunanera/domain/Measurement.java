@@ -6,10 +6,10 @@ import java.util.UUID;
 public abstract class Measurement<T> {
     protected final When when;
     protected final VesselId pidId;
-    protected final UUID batchId;
+    protected final BatchId batchId;
     protected final T value;
 
-    public Measurement(T value, When when, final VesselId pidId, final UUID batchId) {
+    public Measurement(T value, When when, final VesselId pidId, final BatchId batchId) {
         this.value = value;
         // we are truncating to second so that postgresql can handle the timestamps with the correct precision
         this.when = when;
@@ -29,7 +29,7 @@ public abstract class Measurement<T> {
         return pidId;
     }
 
-    public UUID getBatchId() {
+    public BatchId getBatchId() {
         return batchId;
     }
 

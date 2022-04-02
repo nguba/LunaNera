@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public record SetpointReceived(Setpoint setpoint, When when,
                                VesselId vesselId,
-                               UUID batchId) implements DomainEvent {
+                               BatchId batchId) implements DomainEvent {
 
     public Setpoint getValue() {
         return setpoint;
@@ -21,7 +21,7 @@ public record SetpointReceived(Setpoint setpoint, When when,
                 .toString();
     }
 
-    public static SetpointReceived with(final Setpoint value, final VesselId vesselId, final UUID batchId) {
+    public static SetpointReceived with(final Setpoint value, final VesselId vesselId, final BatchId batchId) {
         return new SetpointReceived(value, When.now(), vesselId, batchId);
     }
 }

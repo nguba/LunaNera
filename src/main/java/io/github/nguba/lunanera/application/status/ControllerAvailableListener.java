@@ -1,5 +1,6 @@
 package io.github.nguba.lunanera.application.status;
 
+import io.github.nguba.lunanera.domain.BatchId;
 import io.github.nguba.lunanera.domain.ControllerStatus;
 import io.github.nguba.lunanera.domain.ControllerStatusReceived;
 import io.github.nguba.lunanera.domain.controller.ControllerSwitchedOn;
@@ -26,6 +27,6 @@ public record ControllerAvailableListener(StatusRepository repository) {
     @EventListener
     public void onPidControllerSwitchedOff(ControllerSwitchedOff event) throws SQLException {
         LOGGER.debug("Controller switched off: {}", event.vesselId());
-        repository.save(ControllerStatusReceived.with(ControllerStatus.OFF, event.vesselId(), UUID.randomUUID()));
+        repository.save(ControllerStatusReceived.with(ControllerStatus.OFF, event.vesselId(), BatchId.create()));
     }
 }

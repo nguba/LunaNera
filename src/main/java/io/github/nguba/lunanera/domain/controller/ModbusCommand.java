@@ -1,5 +1,6 @@
 package io.github.nguba.lunanera.domain.controller;
 
+import io.github.nguba.lunanera.domain.BatchId;
 import io.github.nguba.lunanera.domain.Vessel;
 import io.github.nguba.lunanera.infrastructure.EventPublisher;
 import org.slf4j.Logger;
@@ -10,11 +11,11 @@ import java.util.UUID;
 public abstract class ModbusCommand implements Command {
     protected final EventPublisher publisher;
     protected final Vessel pid;
-    protected UUID batchId;
+    protected BatchId batchId;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ModbusCommand.class);
 
-    public ModbusCommand(final EventPublisher publisher, final Vessel pid, UUID batchId) {
+    public ModbusCommand(final EventPublisher publisher, final Vessel pid, BatchId batchId) {
         this.publisher = publisher;
         this.pid = pid;
         this.batchId = batchId;
@@ -36,5 +37,5 @@ public abstract class ModbusCommand implements Command {
         }
     }
 
-    protected abstract void executeCommandOnDevice(final Vessel pid, final EventPublisher publisher, final UUID batchId) throws Exception;
+    protected abstract void executeCommandOnDevice(final Vessel pid, final EventPublisher publisher, final BatchId batchId) throws Exception;
 }
