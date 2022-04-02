@@ -33,9 +33,7 @@ import java.util.Set;
  * </p>
  * @see <a href="http://www.redlion.net/products/industrial-automation/controllers-and-data-acquisition/pid-controllers/pxu-pid-controllers">RedLion PXU PID Controllers</a>
  */
-public class TemperatureController {
-
-    TemperatureControllerId id;
+public record TemperatureController(TemperatureControllerId id) {
 
     public ProcessValue readProcessValue() {
         return null;
