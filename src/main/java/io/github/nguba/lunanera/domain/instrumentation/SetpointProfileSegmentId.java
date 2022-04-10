@@ -5,5 +5,5 @@ package io.github.nguba.lunanera.domain.instrumentation;
  *
  * @param value
  */
-public record ProfileSegmentId(int value) {
+public record SetpointProfileSegmentId(int value) {
 }

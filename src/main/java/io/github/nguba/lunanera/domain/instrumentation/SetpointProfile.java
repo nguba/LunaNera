@@ -25,7 +25,7 @@ import java.util.List;
  */
 public record SetpointProfile(SetpointProfileId id) {
 
-    public List<ProfileSegment> segments() {
+    public List<SetpointProfileSegment> segments() {
         return Collections.emptyList();
     }
 }
