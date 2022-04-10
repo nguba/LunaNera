@@ -1,7 +1,5 @@
 package io.github.nguba.lunanera.domain;
 
-import java.util.UUID;
-
 public record ProcessValueReceived(ProcessValue processValue,
                                    When when, VesselId vesselId,
                                    BatchId batchId) implements DomainEvent {
